@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taste Buddy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <!-- nav bar of home page -->
+  <nav>
+    <div class="logo">
+      <img src="../Assests/logo.png" alt="Taste Buddy Logo">
+    </div>
+
+    <div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search recipes or ingredients" autocomplete="off" />
+  <ul class="suggestions" id="suggestionList"></ul>
+</div>
+
+
+    <div class="menu-wrapper">
+      <div class="menu-toggle" id="menu-toggle"></div>
+      <ul class="menu">
+        <li><a href="index.html">Home</a>
+          <ul class="dropdown">
+            <li><a href="login.html">Login</a></li>
+            <li><a href="recipe.html">Recipe page</a></li>
+            <li><a href="#trending-scroll">Trending</a></li>
+          </ul>
+        </li>
+        <li><a href="#category-scroll">Categories</a>
+          <ul class="dropdown">
+            <li><a href="#category-scroll">All</a></li>
+            <li><a href="#category-scroll">DESI</a></li>
+            <li><a href="#category-scroll">VEGETARIAN</a></li>
+            <li><a href="#category-scroll">NON-VEGETARIAN</a></li>
+          </ul>
+        </li>
+        <li><a href="recipe.html">All Recipes</a>
+          <ul class="dropdown">
+            <li><a href="recipe.html">Vegetarian</a></li>
+            <li><a href="recipe.html">Vegan</a></li>
+            <li><a href="recipe.html">Low-Carb</a></li>
+          </ul>
+        </li>
+        <li><a href="dashboard.html">User Dashboard</a>
+          <ul class="dropdown">
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="#chef-scroll">Meet the Team</a></li>
+          </ul>
+        </li>
+        <li><a href="contact-us.html">Contact</a>
+          <ul class="dropdown">
+            <li><a href="contact-us.html">Email</a></li>
+            <li><a href="#socialmedia-scroll">Social Media</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="auth-links">
+        <a href="login.html" class="btn login-btn">Login</a>
+        <a href="signup.html" class="btn signup-btn">Sign Up</a>
+      </div>
+
+      <!-- Home page dark/light mode option -->
+      <div class="mode-toggle" id="modeToggle">🌙</div>
+    </div>
+  </nav>
+
+  <!-- Hero section of slider -->
+  <header>
+    <div class="hero">
+      <div class="slider">
+        <img src="../Assests/slider1.jpg" class="slide" />
+        <img src="../Assests/slider2.jpg" class="slide" />
+        <img src="../Assests/slider3.jpg" class="slide" />
+      </div>
+      <div class="hero-text">
+        <h1>Delicious Recipes Made Simple</h1>
+        <p>Explore new dishes every day from your own kitchen.</p>
+        <a href="recipe.html" class="button">Browse Recipes</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ✅ Most Loved Recipes (Static Alternative) -->
+  <section class="featured-recipes" style="padding: 40px 20px;" id="trending-scroll">
+    <h1 id="loved-recipe">🍽️ Most Loved Recipes</h2>
+      <div class="recipe-grid">
+        <div class="recipe-card">
+          <img src="../Assests/chicken-korma.jpg" alt="Chicken Karahi" />
+          <h3>Chicken Karahi</h3>
+          <p>Classic Pakistani chicken curry full of taste and bold, spicy flavor.</p>
+          <a href="recipe.html" class="button">View Recipe</a>
+        </div>
+        <div class="recipe-card">
+          <img src="../Assests/nihari.jpg" alt="Beef Nihari" />
+          <h3>Beef Nihari</h3>
+          <p>Slow-cooked beef stew perfect for rich yummy and hearty dinners.</p>
+          <a href="recipe.html" class="button">View Recipe</a>
+        </div>
+        <div class="recipe-card">
+          <img src="../Assests/veggie-pulao.jpg" alt="Veggie Pulao" />
+          <h3>Veggie Pulao</h3>
+          <p>Fluffy rice cooked with seasonal vegetables and mild spices.</p>
+          <a href="recipe.html" class="button">View Recipe</a>
+        </div>
+        <div class="recipe-card">
+          <img src="../Assests/seekh-kebab.jpg" alt="Seekh Kebabs" />
+          <h3>Seekh Kebabs</h3>
+          <p>Grilled minced meat skewers with spicy kick and smoky aroma.</p>
+          <a href="recipe.html" class="button">View Recipe</a>
+        </div>
+        <div class="recipe-card">
+          <img src="../Assests/chicken-biryani.jpg" alt="Chicken Biryani" />
+          <h3>Chicken Biryani</h3>
+          <p>Layered rice and chicken, infused with saffron and spices.</p>
+          <a href="recipe.html" class="button">View Recipe</a>
+        </div>
+        <div class="recipe-card">
+          <img src="../Assests/pakistani-kheer.jpg" alt="Gulab Jamun" />
+          <h3>Pakistani Kheer</h3>
+          <p>A traditional Pakistani delicacy-Kheer-has always remained an all-time favorite.</p>
+          <a href="recipe.html" class="button">View Recipe</a>
+        </div>
+        <div class="recipe-card">
+          <img src="../Assests/haleem.jpg" alt="Haleem" />
+          <h3>Haleem</h3>
+          <p>Slow-cooked wheat and lentil stew enriched with tender meat and spices.</p>
+          <a href="recipe.html" class="button">View Recipe</a>
+        </div>
+
+        <div class="recipe-card">
+          <img src="../Assests/falooda.jpg" alt="Onion Pakoras" />
+          <h3>Falooda-Rose Milk</h3>
+          <p>Try this dessert fusion, topped made with falooda, a bright pink rose syrup.</p>
+          <a href="recipe.html" class="button">View Recipe</a>
+        </div>
+
+        <div class="recipe-card">
+          <img src="../Assests/lassi.jpg" alt="Sweet Lassi" />
+          <h3>Sweet Lassi</h3>
+          <p>Refreshing yogurt-based drink flavored with sugar and cardamom, served chilled.</p>
+          <a href="recipe.html" class="button">View Recipe</a>
+        </div>
+
+        <div class="recipe-card">
+          <img src="../Assests/zarda.jpg" alt="Zarda" />
+          <h3>Zarda</h3>
+          <p>Traditional Pakistani sweet rice dish with dry fruits, raisins, and bright colors.</p>
+          <a href="recipe.html" class="button">View Recipe</a>
+        </div>
+
+      </div>
+  </section>
+
+
+  <!-- Browse by category section -->
+  <div id="category-scroll">
+    <section class="categories">
+      <h2>Browse by Category</h2>
+      <div class="buttons">
+        <a href="recipe.html?category=All"><button>ALL</button></a>
+        <a href="recipe.html?category=Desi"><button>Desi</button></a>
+        <a href="recipe.html?category=Vegetarian"><button>Vegetarian</button></a>
+        <a href="recipe.html?category=Non-Vegetarian"><button>Non-Vegetarian</button></a>
+        <a href="recipe.html?category=Snack"><button>Snack</button></a>
+        <a href="recipe.html?category=Drinks"><button>Drink</button></a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Short recipe section -->
+  <section class="quick-recipes">
+    <h2>⏰ UNDER 30-MINUTE RECIPES</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>🍜 15-Minute Garlic Noodles</h3>
+      </div>
+      <div class="card">
+        <h3>🍗 20-Minute Caprese Chicken</h3>
+      </div>
+      <div class="card">
+        <h3>🧀 Instant Pot Mac & Cheese</h3>
+      </div>
+    </div>
+    <div class="quick-btn-wrapper">
+      <a href="recipe.html" class="quick-btn">⏳ GET TIME-SAVING RECIPES</a>
+    </div>
+  </section>
+
+  <!-- Chef section -->
+  <div id="chef-scroll">
+    <section class="chefs">
+      <h2>👩‍🍳 Meet Our Contributors</h2>
+      <p class="section-subtitle">Passionate food creators bringing you recipes from all around the world.</p>
+      <div class="chefs-grid">
+        <div class="chef-card"><img src="../Assests/chef1.jpg" alt="Chef Mehboob" class="chef-img" />
+          <h4>M-Abdullah</h4>
+          <p>The Daily Foodies</p>
+        </div>
+        <div class="chef-card"><img src="../Assests/chef2.jpg" alt="Samia Ahad" class="chef-img" />
+          <h4>M-Rohail</h4>
+          <p>Pakistan's culinary king innovating flavors</p>
+        </div>
+        <div class="chef-card"><img src="../Assests/chef3.jpg" alt="Zakir Qureshi" class="chef-img" />
+          <h4>Ahmed</h4>
+          <p>Passionate, creative, culinary artist</p>
+        </div>
+        <div class="chef-card"><img src="../Assests/chef4.jpg" alt="Samia Ahad" class="chef-img" />
+          <h4>Ali Raza</h4>
+          <p>Flavour Innovator</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FAQs section -->
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <details class="faq-item">
+        <summary>Can I access TasteBuddy on my mobile device?</summary>
+        <p>Yes! TasteBuddy is fully responsive and works smoothly on smartphones, tablets, and desktops.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Are the recipes beginner-friendly?</summary>
+        <p>Yes! Most recipes are designed with step-by-step instructions that are easy to follow for all levels.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I filter recipes by dietary preferences?</summary>
+        <p>Absolutely. You can browse by tags like Vegetarian, Vegan, Gluten-Free, and more from the Categories menu.
+        </p>
+      </details>
+      <details class="faq-item">
+        <summary>Do I need to create an account?</summary>
+        <p>You can view recipes without an account, but signing up lets you save favorites, submit recipes, and leave
+          reviews.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Footer section -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo-social">
+        <a href="#" class="footer-logo"><img src="../Assests/foot-logo.png" alt="Taste Buddy Logo" /></a>
+        <div id="socialmedia-scroll">
+          <div class="social-icons">
+            <a href="https://www.facebook.com/share/1Ay523zYUn/" target="_blank" aria-label="Facebook"
+              class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/AliGujjar124806?t=epoQL3eQVJ8ckajMGQQXIw&s=08" target="_blank" aria-label="Twitter"
+              class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/leopard.923008?utm_source=qr&igsh=aXJjY3IyZW1vYTAw" target="_blank"
+              aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/mhdrohail" target="_blank" aria-label="LinkedIn" class="social-link"><i
+                class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="link-group">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="link-group">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-about">
+        <h4>About Taste Buddy</h4>
+        <p>Your go-to platform for quick, delicious recipes that make cooking easy and fun. Discover new meals every day
+          and enjoy cooking at home!</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Taste Buddy. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="../js/script.js"></script>
+  fetch('http://localhost:3000/api/search?q=yourQuery')
+  
+
+</body>
+
+</html>

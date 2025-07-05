@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recipe Page</title>
+  <link rel="stylesheet" href="../css/recipe.css">
+</head>
+<body>
+  <!-- ✅ HEADER (Copied from Homepage) -->
+  <nav>
+  <div class="logo">
+    <a href="index.html"><img src="../Assests/logo.png" alt="TasteBuddy Logo" /></a>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Search recipes..." />
+    <ul class="suggestions" id="suggestionList"></ul>
+  </div>
+
+  <div class="menu-wrapper">
+    <ul class="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="recipe.html">Recipes</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+    </ul>
+    <span id="modeToggle" class="mode-toggle">🌙</span>
+  </div>
+</nav>
+
+
+  <!-- ✅ FILTER BUTTONS -->
+  <div class="filter-bar">
+    <div class="filter-buttons" id="filter-buttons">
+      <button data-category="All" class="active">All</button>
+      <button data-category="Desi">Desi</button>
+      <button data-category="Vegetarian">Vegetarian</button>
+      <button data-category="Non-Vegetarian">Non-Vegetarian</button>
+      <button data-category="Dessert">Dessert</button>
+      <button data-category="Drinks">Drinks</button>
+    </div>
+  </div>
+
+  <!-- ✅ MAIN CONTENT -->
+  <div class="main">
+    <div class="sidebar" id="recipe-list">
+      <!-- List of recipe titles -->
+    </div>
+    <div class="content" id="recipe-details">
+      <!-- Recipe details will appear here -->
+      <p>Select a recipe to view details.</p>
+    </div>
+  </div>
+
+  <script src="../js/recipe.js"></script>
+</body>
+</html>

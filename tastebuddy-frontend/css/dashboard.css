@@ -1,0 +1,267 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(to bottom right, #fdfbfb, #ebedee);
+  color: #333;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+nav {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffffcc;
+  backdrop-filter: blur(8px);
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  height: 70px;
+}
+
+.search-bar {
+  position: relative;
+}
+
+#searchInput {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 300px;
+  transition: 0.3s ease;
+}
+
+#searchInput:focus {
+  border-color: #f05454;
+  outline: none;
+}
+
+.suggestions {
+  list-style: none;
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  z-index: 10;
+  display: none;
+  margin-top: 2px;
+  border-radius: 0 0 8px 8px;
+}
+
+.suggestions li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestions li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Menu */
+.menu-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.menu {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.menu li a:hover {
+  color: #ff4d4d;
+}
+
+.mode-toggle {
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+/* Dashboard */
+.dashboard {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  color: #1d392f;
+}
+
+/* Profile Card */
+.profile-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.profile-card img {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1.5rem;
+  border: 4px solid #f05454;
+}
+
+.profile-info h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+/* Sections */
+.section {
+  margin: 40px 0;
+}
+
+.section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #f05454;
+  border-left: 6px solid #f05454;
+  padding-left: 10px;
+}
+
+/* Cards */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.card-content h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Notes & Cooking Plan */
+.goals-list li {
+  margin: 8px 0;
+  font-size: 15px;
+  list-style: "🍽 ";
+  padding-left: 10px;
+}
+
+textarea#userNotes {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  resize: vertical;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.2s ease;
+}
+
+textarea#userNotes:focus {
+  border-color: #f05454;
+  outline: none;
+}
+
+/* Dark Mode Enhancements */
+body.dark-mode {
+  background: #121212;
+  color: #eee;
+}
+
+body.dark-mode nav {
+  background: #1e1e1e;
+  border-color: #333;
+}
+
+body.dark-mode .menu li a {
+  color: #ccc;
+}
+
+body.dark-mode .menu li a:hover {
+  color: #ff9999;
+}
+
+body.dark-mode .search-bar input {
+  background-color: #333;
+  color: #fff;
+  border-color: #555;
+}
+
+body.dark-mode .profile-card,
+body.dark-mode .card,
+body.dark-mode textarea#userNotes {
+  background-color: #1f1f1f;
+  color: #eee;
+  border-color: #444;
+}
+
+body.dark-mode .card-content p {
+  color: #bbb;
+}
+.two-column-section {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.two-column-section .section {
+  flex: 1;
+  min-width: 300px;
+}

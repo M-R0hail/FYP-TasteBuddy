@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Dashboard - TasteBuddy</title>
+  <link rel="stylesheet" href="../css/dashboard.css" />
+</head>
+
+<body>
+  <!-- Header (same as homepage) -->
+  <nav>
+    <div class="logo">
+      <img src="../Assests/logo.png" alt="Taste Buddy Logo" />
+    </div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search recipes or ingredients" autocomplete="off" />
+      <ul class="suggestions" id="suggestionList"></ul>
+    </div>
+
+    <div class="menu-wrapper">
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#category-scroll">Categories</a></li>
+        <li><a href="recipe.html">All Recipes</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact-us.html">Contact</a></li>
+      </ul>
+      <div class="mode-toggle" id="modeToggle">🌙</div>
+    </div>
+  </nav>
+
+  <!-- Main Dashboard Content -->
+  <main class="dashboard">
+    <div class="profile-card">
+      <img src="../Assests/chef2.jpg" alt="Profile Picture" id="profileImage" />
+      <div class="profile-info">
+        <h2 id="profileName">Rohail</h2>
+      </div>
+    </div>
+
+    <header>
+      <h1>Welcome, <span id="username">User</span> 👋</h1>
+    </header>
+
+    <section class="section">
+      <h2>📌 Bookmarked Recipes</h2>
+      <div class="card-container" id="bookmarks">
+        <p>No bookmarks found.</p>
+      </div>
+    </section>
+    <!-- 📅 Cooking Schedule -->
+<section class="section">
+  <h2>📅 This Week's Cooking Plan</h2>
+  <ul class="goals-list">
+    <li>Monday: Chicken Biryani</li>
+    <li>Tuesday: Daal Fry & Roti</li>
+    <li>Wednesday: Aloo Keema</li>
+    <li>Thursday: Pasta Night</li>
+    <li>Friday: BBQ Tikka</li>
+  </ul>
+</section>
+
+<!-- 👀 Recently Viewed Recipes -->
+<section class="section">
+  <h2>👀 Recently Viewed Recipes</h2>
+  <div class="card-container" id="recent">
+    <p>No recently viewed recipes.</p>
+  </div>
+</section>
+
+<div class="two-column-section">
+  <!-- 📚 Recipe of the Day -->
+  <section class="section">
+    <h2>📚 Recipe of the Day</h2>
+    <div class="card">
+      <img src="https://source.unsplash.com/400x200/?pakistani-food" alt="Recipe of the Day" style="width: 100%; border-radius: 8px 8px 0 0;" />
+      <div class="card-content">
+        <h3>Beef Pulao</h3>
+        <p>Aromatic beef pulao cooked with whole spices and basmati rice — a perfect comfort dish!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📝 Personal Cooking Notes -->
+  <section class="section">
+    <h2>📝 Personal Cooking Notes</h2>
+    <textarea id="userNotes" placeholder="Write your cooking plans or notes here..." rows="8" style="width: 100%;"></textarea>
+  </section>
+</div>
+
+
+  </main>
+
+  <script src="../js/dashboard.js"></script>
+</body>
+
+</html>

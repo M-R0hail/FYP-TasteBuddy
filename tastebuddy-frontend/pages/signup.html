@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup - TasteBuddy</title>
+  <link rel="stylesheet" href="../css/signup.css">
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, button { margin: 10px 0; padding: 10px; width: 100%; }
+    .container { max-width: 400px; margin: auto; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+    <p id="message" style="color: red;"></p>
+  </div>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const message = document.getElementById("message");
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      const userExists = users.some(user => user.username === username);
+      if (userExists) {
+        message.textContent = "Username already exists!";
+        return;
+      }
+
+      users.push({ username, password });
+      localStorage.setItem("users", JSON.stringify(users));
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>
