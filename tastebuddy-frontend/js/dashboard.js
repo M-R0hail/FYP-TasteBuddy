@@ -1,82 +1,90 @@
-// 🚫 Redirect to login if not logged in
-if (!localStorage.getItem("loggedInUser")) {
+// ✅ Support both localStorage and sessionStorage
+const loggedInUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
+const userId = localStorage.getItem("userId") || sessionStorage.getItem("userId");
+
+// 🚫 Redirect if not logged in
+if (!loggedInUser || !userId) {
   window.location.href = "login.html";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const toggle = document.getElementById("modeToggle");
-  const userName = localStorage.getItem("loggedInUser") || "User";
-  const userId = localStorage.getItem("userId") || 1;
-  const profileImage = localStorage.getItem("profileImage");
 
-  // 🧑‍💼 Set user name and profile
-  document.getElementById("username").textContent = userName;
-  document.getElementById("profileName").textContent = userName;
-  if (profileImage) {
-    document.getElementById("profileImage").src = profileImage;
-  }
+  // 🧑 Set profile info
+  document.getElementById("username").textContent = loggedInUser;
 
-  // 🌙 Apply dark mode
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
+  // 🌙 Dark Mode
+  if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-mode");
     toggle.textContent = "☀️";
   }
-
   toggle.addEventListener("click", () => {
     const isDark = document.body.classList.toggle("dark-mode");
     toggle.textContent = isDark ? "☀️" : "🌙";
     localStorage.setItem("theme", isDark ? "dark" : "light");
   });
 
-  // 📌 Load Bookmarked Recipes
-  fetch(`http://localhost:3000/api/user/${userId}/bookmarks`)
-    .then(res => res.json())
-    .then(recipes => {
-      const bookmarkContainer = document.getElementById("bookmarks");
-      if (recipes.length > 0) {
-        bookmarkContainer.innerHTML = "";
-        recipes.forEach(recipe => {
-          const card = document.createElement("div");
-          card.className = "card";
-          card.innerHTML = `
-            <img src="${recipe.image_url}" alt="${recipe.title}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px 8px 0 0;">
-            <div class="card-content"><h3>${recipe.title}</h3></div>`;
-          bookmarkContainer.appendChild(card);
-        });
-      }
-    })
-    .catch(err => {
-      console.error("❌ Error loading bookmarks:", err);
-      document.getElementById("bookmarks").innerHTML = "<p>Failed to load bookmarks.</p>";
-    });
+  // ✅ Avatar Selection (Fix: Ensure it's always saved and restored properly)
+  const avatarSelect = document.getElementById("avatarSelect");
+  const emojiAvatar = document.getElementById("emojiAvatar");
 
-  // 🕘 Load Recently Viewed
-  const recentContainer = document.getElementById("recent");
-  const recent = JSON.parse(localStorage.getItem("recent")) || [];
-  if (recentContainer && recent.length > 0) {
-    recentContainer.innerHTML = "";
-    recent.forEach(recipe => {
+  const savedAvatar = localStorage.getItem("userAvatar");
+  if (savedAvatar) {
+    avatarSelect.value = savedAvatar;
+    emojiAvatar.textContent = savedAvatar;
+  }
+
+  avatarSelect.addEventListener("change", () => {
+    const selected = avatarSelect.value;
+    localStorage.setItem("userAvatar", selected);
+    emojiAvatar.textContent = selected;
+  });
+
+  // ✅ 📌 Load Bookmarked Recipes from Database
+  const bookmarksContainer = document.getElementById("bookmarks");
+
+  try {
+    const response = await fetch(`http://localhost:3000/api/bookmarks/${userId}`);
+    const bookmarkedRecipes = await response.json();
+
+    if (!Array.isArray(bookmarkedRecipes) || bookmarkedRecipes.length === 0) {
+      bookmarksContainer.innerHTML = "<p>No bookmarks yet.</p>";
+      return;
+    }
+
+    bookmarksContainer.innerHTML = "";
+
+    bookmarkedRecipes.forEach(recipe => {
+      const imageURL = recipe.image?.startsWith("http")
+        ? recipe.image
+        : `http://localhost:3000/images/${recipe.image}`;
+
+      const shortDescription = recipe.description?.length > 100
+        ? recipe.description.slice(0, 100) + "..."
+        : recipe.description;
+
       const card = document.createElement("div");
       card.className = "card";
       card.innerHTML = `
-        <img src="${recipe.image_url}" alt="${recipe.title}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px 8px 0 0;">
-        <div class="card-content"><h3>${recipe.title}</h3></div>`;
-      recentContainer.appendChild(card);
+        <img src="${imageURL}" alt="${recipe.title}" />
+        <div class="card-content">
+          <h3>${recipe.title}</h3>
+          <p>${shortDescription}</p>
+          <a href="recipe.html?id=${recipe.id}">View Recipe</a>
+        </div>
+      `;
+      bookmarksContainer.appendChild(card);
     });
+  } catch (err) {
+    console.error("❌ Error loading bookmarks:", err);
+    bookmarksContainer.innerHTML = "<p style='color:red;'>Failed to load bookmarks.</p>";
   }
 
-  // 👋 Welcome Text
-  const welcomeText = document.getElementById('welcomeText');
-  if (welcomeText) {
-    welcomeText.textContent = `Welcome, ${userName}!`;
-  }
-
-  // 🔍 Search bar
+  // 🔍 Live Search
   const searchInput = document.getElementById("searchInput");
   const suggestionList = document.getElementById("suggestionList");
 
-  searchInput.addEventListener("input", () => {
+  searchInput.addEventListener("input", async () => {
     const query = searchInput.value.trim().toLowerCase();
     suggestionList.innerHTML = "";
 
@@ -85,48 +93,41 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    fetch("http://localhost:3000/api/recipes")
-      .then(res => res.json())
-      .then(recipes => {
-        const matches = recipes.filter(recipe => {
-          const title = recipe.title?.toLowerCase() || "";
-          const desc = recipe.description?.toLowerCase() || "";
-          const ingredients = Array.isArray(recipe.ingredients)
-            ? recipe.ingredients.join(", ").toLowerCase()
-            : (recipe.ingredients || "").toLowerCase();
+    try {
+      const res = await fetch("http://localhost:3000/api/recipes");
+      const recipes = await res.json();
 
-          return (
-            title.includes(query) ||
-            desc.includes(query) ||
-            ingredients.includes(query)
-          );
-        });
+      const matches = recipes.filter(r => {
+        const t = r.title?.toLowerCase() || "";
+        const d = r.description?.toLowerCase() || "";
+        const i = Array.isArray(r.ingredients) ? r.ingredients.join(", ").toLowerCase() : "";
+        return t.includes(query) || d.includes(query) || i.includes(query);
+      });
 
-        if (matches.length > 0) {
-          suggestionList.style.display = "block";
-          matches.slice(0, 6).forEach(recipe => {
-            const li = document.createElement("li");
-            li.textContent = recipe.title;
-            li.addEventListener("click", () => {
-              searchInput.value = "";
-              suggestionList.style.display = "none";
-              scrollToAndHighlightRecipe(recipe.title);
-            });
-            suggestionList.appendChild(li);
+      if (matches.length > 0) {
+        suggestionList.style.display = "block";
+        matches.slice(0, 6).forEach(recipe => {
+          const li = document.createElement("li");
+          li.textContent = recipe.title;
+          li.addEventListener("click", () => {
+            window.location.href = `recipe.html?id=${recipe.id}`;
           });
-        } else {
-          suggestionList.style.display = "none";
-        }
-      })
-      .catch(err => console.error("Search failed:", err));
+          suggestionList.appendChild(li);
+        });
+      } else {
+        suggestionList.style.display = "none";
+      }
+    } catch (err) {
+      console.error("❌ Search error:", err);
+    }
   });
-});
 
-// 📝 Notes - Save and Load from localStorage
-const notesArea = document.getElementById("userNotes");
-if (notesArea) {
-  notesArea.value = localStorage.getItem("userNotes") || "";
-  notesArea.addEventListener("input", () => {
-    localStorage.setItem("userNotes", notesArea.value);
-  });
-}
+  // 📝 Cooking Notes
+  const notes = document.getElementById("userNotes");
+  if (notes) {
+    notes.value = localStorage.getItem("userNotes") || "";
+    notes.addEventListener("input", () => {
+      localStorage.setItem("userNotes", notes.value);
+    });
+  }
+});

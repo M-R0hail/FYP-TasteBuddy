@@ -28,31 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
   });
 
-  // View by ID
-  if (recipeId) {
-    try {
-      const res = await fetch(`http://localhost:3000/api/recipes/${recipeId}`);
-      const recipe = await res.json();
-
-      document.body.innerHTML = `
-        <div style="padding: 20px;">
-          <h1>${recipe.title}</h1>
-          <img src="${recipe.image}" alt="${recipe.title}" style="max-width: 100%; border-radius: 10px;" />
-          <p>${recipe.description}</p>
-          <h3>Ingredients</h3>
-          <ul>${JSON.parse(recipe.ingredients).map(i => `<li>${i}</li>`).join('')}</ul>
-          <h3>Instructions</h3>
-          <p>${recipe.instructions}</p>
-        </div>
-      `;
-    } catch (err) {
-      console.error(err);
-      document.body.innerHTML = "<h2>Recipe not found or error loading.</h2>";
-    }
-    return;
-  }
-
-  // Fetch all recipes
+  // ✅ Fetch all recipes
   try {
     const res = await fetch('http://localhost:3000/api/recipes');
     allRecipes = await res.json();
@@ -67,12 +43,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderRecipes(allRecipes);
     filterRecipes();
+
+    if (recipeId) {
+      const selected = allRecipes.find(r => r.id == recipeId);
+      if (selected) showRecipeDetails(selected);
+    }
   } catch (err) {
     console.error('❌ Error fetching recipes:', err);
     recipeDetails.innerHTML = '<p style="color:red;">Failed to load recipes.</p>';
   }
 
-  // Filter live on input
+  // 🔍 Live Search Suggestions
   searchInput.addEventListener("input", () => {
     const query = searchInput.value.trim().toLowerCase();
     if (!query) {
@@ -93,8 +74,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       const li = document.createElement("li");
       li.textContent = recipe.title;
       li.addEventListener("click", () => {
+        window.history.pushState({}, '', `recipe.html?id=${recipe.id}`);
         showRecipeDetails(recipe);
-        searchInput.value = recipe.title;
         suggestionList.style.display = "none";
       });
       suggestionList.appendChild(li);
@@ -104,14 +85,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     filterRecipes();
   });
 
-  // Hide dropdown when clicking outside
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".search-bar")) {
       suggestionList.style.display = "none";
     }
   });
 
-  // Filter buttons
+  // 🧾 Category Filter
   filterButtons?.addEventListener('click', (e) => {
     if (e.target.tagName === 'BUTTON') {
       currentCategory = e.target.dataset.category;
@@ -123,6 +103,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  // 📂 Filter Recipes
   function filterRecipes() {
     const query = searchInput.value.trim().toLowerCase();
     let filtered = [...allRecipes];
@@ -146,6 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderRecipes(filtered);
   }
 
+  // 📃 Render Sidebar Recipes
   function renderRecipes(recipes) {
     recipeList.innerHTML = '';
 
@@ -159,28 +141,77 @@ document.addEventListener("DOMContentLoaded", async () => {
       const item = document.createElement('div');
       item.className = 'recipe-title';
       item.textContent = recipe.title;
-      item.addEventListener('click', () => showRecipeDetails(recipe));
+
+      item.addEventListener('click', () => {
+        window.history.pushState({}, '', `recipe.html?id=${recipe.id}`);
+        showRecipeDetails(recipe);
+      });
+
       recipeList.appendChild(item);
     });
   }
 
+  // ✅ Show Recipe Details + Bookmark Button
   function showRecipeDetails(recipe) {
-    const content = document.querySelector(".content");
+  const content = document.querySelector(".content");
+  const userId = localStorage.getItem("userId") || sessionStorage.getItem("userId");
 
-    const ingredients = Array.isArray(recipe.ingredients)
-      ? recipe.ingredients
-      : recipe.ingredients.split(',');
+  const ingredients = Array.isArray(recipe.ingredients)
+    ? recipe.ingredients
+    : recipe.ingredients.split(',');
 
-    content.innerHTML = `
-      <h2>${recipe.title}</h2>
-      <img src="${recipe.image.startsWith('http') ? recipe.image : `http://localhost:3000/images/${recipe.image}`}" class="recipe-image" alt="${recipe.title}" />
-      <p>${recipe.description}</p>
-      <h3>Ingredients</h3>
-      <ul>
-        ${ingredients.map(i => `<li>${i.trim()}</li>`).join('')}
-      </ul>
-      <h3>Instructions</h3>
-      <p>${recipe.instructions}</p>
-    `;
-  }
+  const imageURL = recipe.image.startsWith("http")
+    ? recipe.image
+    : `http://localhost:3000/images/${recipe.image}`;
+
+  content.innerHTML = `
+    <h2>${recipe.title}</h2>
+    <button class="bookmark-btn" data-id="${recipe.id}">🔖 Bookmark</button>
+    <p id="bookmarkMessage" style="margin-top: 8px;"></p>
+    <img src="${imageURL}" class="recipe-image" alt="${recipe.title}" />
+    <p>${recipe.description || ''}</p>
+    <h3>Ingredients</h3>
+    <ul>
+      ${ingredients.map(i => `<li>${i.trim()}</li>`).join('')}
+    </ul>
+    <h3>Instructions</h3>
+    <p>${recipe.instructions}</p>
+  `;
+
+  // 📌 Add bookmark via backend
+  const bookmarkBtn = document.querySelector(".bookmark-btn");
+  const msg = document.getElementById("bookmarkMessage");
+
+  bookmarkBtn.addEventListener("click", async () => {
+    if (!userId) {
+      msg.textContent = "❌ Please log in first.";
+      msg.style.color = "red";
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:3000/api/bookmark", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, recipeId: recipe.id })
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        msg.textContent = "✅ Bookmarked successfully!";
+        msg.style.color = "green";
+        bookmarkBtn.disabled = true;
+      } else {
+        msg.textContent = data.error || "⚠️ Already bookmarked.";
+        msg.style.color = "orange";
+      }
+    } catch (err) {
+      console.error("Bookmark Error:", err);
+      msg.textContent = "❌ Error bookmarking.";
+      msg.style.color = "red";
+    }
+  });
+}
+
 });

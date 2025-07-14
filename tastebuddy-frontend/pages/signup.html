@@ -1,46 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Signup - TasteBuddy</title>
-  <link rel="stylesheet" href="../css/signup.css">
-  <style>
-    body { font-family: Arial; padding: 20px; }
-    input, button { margin: 10px 0; padding: 10px; width: 100%; }
-    .container { max-width: 400px; margin: auto; }
-  </style>
+  <link rel="stylesheet" href="../css/login.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
-  <div class="container">
-    <h2>Sign Up</h2>
-    <form id="signupForm">
-      <input type="text" id="username" placeholder="Username" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button type="submit">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="login.html">Login here</a></p>
-    <p id="message" style="color: red;"></p>
+  <!-- 🌙 Dark Mode Toggle -->
+  <div class="dark-toggle">
+    <label class="switch">
+      <input type="checkbox" id="darkModeToggle" />
+      <span class="slider"></span>
+    </label>
   </div>
 
+  <div class="signup-wrapper">
+    <div class="glass-card">
+      <h2 class="signup-title">Create Your Account 👤</h2>
+      <p class="signup-subtitle">Join TasteBuddy and discover delicious recipes</p>
+
+      <form id="signupForm" novalidate>
+        <!-- Username -->
+        <div class="input-group">
+          <label for="username">Username <span>*</span></label>
+          <div class="input-wrapper">
+            <i class="fas fa-user"></i>
+            <input type="text" id="username" placeholder="e.g. foodie123" required />
+          </div>
+          <small id="usernameError" class="input-error"></small>
+        </div>
+
+        <!-- Password -->
+        <div class="input-group">
+          <label for="password">Password <span>*</span></label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" placeholder="At least 8 characters, A-Z, a-z, 0-9, symbol" required />
+            <span class="toggle-password" onclick="togglePassword()">
+              <i class="fas fa-eye-slash"></i>
+            </span>
+          </div>
+          <div id="strengthMsg" class="strength-msg"></div>
+          <small id="passwordError" class="input-error"></small>
+        </div>
+
+        <button type="submit" class="btn-signup">Sign Up</button>
+      </form>
+
+      <p class="link-text">Already have an account? <a href="login.html">Login here</a></p>
+      <p id="message" class="error-message"></p>
+    </div>
+  </div>
+
+  <!-- ✅ Script -->
   <script>
-    document.getElementById("signupForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const message = document.getElementById("message");
+    const usernameInput = document.getElementById("username");
+const passwordInput = document.getElementById("password");
+const usernameError = document.getElementById("usernameError");
+const passwordError = document.getElementById("passwordError");
+const strengthMsg = document.getElementById("strengthMsg");
+const message = document.getElementById("message");
+const toggle = document.getElementById("darkModeToggle");
+const body = document.body;
 
-      let users = JSON.parse(localStorage.getItem("users")) || [];
+// ✅ Dark Mode Setup
+if (localStorage.getItem("theme") === "dark") {
+  body.classList.add("dark");
+  toggle.checked = true;
+}
+toggle.addEventListener("change", () => {
+  body.classList.toggle("dark");
+  localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
+});
 
-      const userExists = users.some(user => user.username === username);
-      if (userExists) {
-        message.textContent = "Username already exists!";
-        return;
-      }
+// ✅ Username Validation
+function validateUsername(username) {
+  return /^[a-zA-Z0-9_]{3,15}$/.test(username);
+}
 
-      users.push({ username, password });
-      localStorage.setItem("users", JSON.stringify(users));
-      window.location.href = "login.html";
+// ✅ Password Validation
+function validateStrongPassword(password) {
+  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(password);
+}
+
+// ✅ Password Strength Feedback
+passwordInput.addEventListener("input", () => {
+  const val = passwordInput.value;
+  if (val.length === 0) {
+    strengthMsg.textContent = "";
+  } else if (validateStrongPassword(val)) {
+    strengthMsg.textContent = "✅ Strong password";
+    strengthMsg.style.color = "green";
+  } else if (val.length >= 6) {
+    strengthMsg.textContent = "⚠️ Weak password. Use upper/lowercase, numbers & symbols.";
+    strengthMsg.style.color = "orange";
+  } else {
+    strengthMsg.textContent = "❌ Too short. Minimum 8 characters.";
+    strengthMsg.style.color = "red";
+  }
+});
+
+// ✅ Signup Submit Handler
+document.getElementById("signupForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  usernameError.textContent = "";
+  passwordError.textContent = "";
+  message.textContent = "";
+
+  let isValid = true;
+
+  if (!validateUsername(username)) {
+    usernameError.textContent = "Username must be 3-15 characters, letters/numbers/underscores only.";
+    isValid = false;
+  }
+
+  if (!validateStrongPassword(password)) {
+    passwordError.textContent = "Password must be at least 8 characters and include uppercase, lowercase, number, and symbol.";
+    isValid = false;
+  }
+
+  if (!isValid) return;
+
+  try {
+    const response = await fetch("http://localhost:3000/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password })
     });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      message.textContent = data.error || "Signup failed.";
+      message.style.color = "red";
+      return;
+    }
+
+    // ✅ Success: Redirect to login
+    message.textContent = "🎉 Signup successful! Redirecting...";
+    message.style.color = "green";
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1500);
+
+  } catch (err) {
+    console.error("Signup Error:", err);
+    message.textContent = "Something went wrong. Please try again.";
+    message.style.color = "red";
+  }
+});
+
   </script>
 </body>
 </html>

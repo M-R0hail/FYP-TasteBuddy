@@ -222,7 +222,7 @@ searchInput.addEventListener("input", () => {
           li.addEventListener("click", () => {
             searchInput.value = "";
             suggestionList.style.display = "none";
-            window.location.href = "../pages/recipe.html";
+            window.location.href = `../pages/recipe.html?id=${recipe.id}`;
 
           });
           suggestionList.appendChild(li);
@@ -238,3 +238,39 @@ searchInput.addEventListener("input", () => {
 });
 
 
+document.querySelectorAll(".rating").forEach(ratingEl => {
+  let currentRating = parseInt(ratingEl.dataset.rating) || 0;
+
+  // Create 5 stars
+  for (let i = 1; i <= 5; i++) {
+    const star = document.createElement("span");
+    star.classList.add("star");
+    star.textContent = "★";
+
+    if (i <= currentRating) {
+      star.classList.add("filled");
+    }
+
+    // Add click event with toggle/unstar logic
+    star.addEventListener("click", () => {
+      if (currentRating === i) {
+        // If clicked same star again → unstar (set to 0)
+        currentRating = 0;
+        ratingEl.dataset.rating = 0;
+      } else {
+        currentRating = i;
+        ratingEl.dataset.rating = i;
+      }
+
+      // Optional: Save locally
+      // localStorage.setItem(ratingEl.closest('.recipe-card').querySelector('h3').innerText, currentRating);
+
+      // Update visual stars
+      ratingEl.querySelectorAll(".star").forEach((s, index) => {
+        s.classList.toggle("filled", index < currentRating);
+      });
+    });
+
+    ratingEl.appendChild(star);
+  }
+});
