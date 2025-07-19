@@ -10,21 +10,65 @@
   <!-- ✅ HEADER -->
   <nav>
     <div class="logo">
-      <a href="index.html"><img src="../Assests/logo.png" alt="TasteBuddy Logo" /></a>
-    </div>
+  <a href="index.html">
+    <img src="../Assests/logo.png" alt="Taste Buddy Logo">
+  </a>
+</div>
+
 
     <div class="search-bar">
-      <input type="text" placeholder="Search recipes..." />
-      <ul class="suggestions" id="suggestionList"></ul>
-    </div>
+  <input type="text" id="searchInput" placeholder="Search recipes or ingredients" autocomplete="off" />
+  <ul class="suggestions" id="suggestionList"></ul>
+</div>
+
 
     <div class="menu-wrapper">
+      <div class="menu-toggle" id="menu-toggle"></div>
       <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="recipe.html">Recipes</a></li>
-        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="index.html">Home</a>
+          <ul class="dropdown">
+            <li><a href="login.html">Login</a></li>
+            <li><a href="recipe.html">Recipe page</a></li>
+            <li><a href="#trending-scroll">Trending</a></li>
+          </ul>
+        </li>
+        <li><a href="#category-scroll">Categories</a>
+          <ul class="dropdown">
+            <li><a href="#category-scroll">All</a></li>
+            <li><a href="#category-scroll">DESI</a></li>
+            <li><a href="#category-scroll">VEGETARIAN</a></li>
+            <li><a href="#category-scroll">NON-VEGETARIAN</a></li>
+          </ul>
+        </li>
+        <li><a href="recipe.html">All Recipes</a>
+          <ul class="dropdown">
+            <li><a href="recipe.html">Vegetarian</a></li>
+            <li><a href="recipe.html">Vegan</a></li>
+            <li><a href="recipe.html">Low-Carb</a></li>
+          </ul>
+        </li>
+        <li><a href="dashboard.html">User Dashboard</a>
+          <ul class="dropdown">
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="#chef-scroll">Meet the Team</a></li>
+          </ul>
+        </li>
+        <li><a href="contact-us.html">Contact</a>
+          <ul class="dropdown">
+            <li><a href="contact-us.html">Email</a></li>
+            <li><a href="#socialmedia-scroll">Social Media</a></li>
+          </ul>
+        </li>
       </ul>
-      <span id="modeToggle" class="mode-toggle">🌙</span>
+
+      <div class="auth-links">
+        <a href="login.html" class="btn login-btn">Login</a>
+        <a href="signup.html" class="btn signup-btn">Sign Up</a>
+      </div>
+
+      <!-- Home page dark/light mode option -->
+      <div class="mode-toggle" id="modeToggle">🌙</div>
+      <div class="mode-toggle" id="modeToggle">🌙</div>
     </div>
   </nav>
 

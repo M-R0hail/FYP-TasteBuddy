@@ -30,7 +30,7 @@ Now add your dry spices like turmeric, red chili powder, coriander powder, and s
   title: "Gajar Ka Halwa – Carrot Pudding",
   description: "Gajar ka Halwa is a beloved Pakistani dessert made by slow-cooking grated carrots with milk, sugar, and ghee. Garnished with cardamom and nuts, this winter delicacy is rich, warm, and comforting. It’s often served at weddings, Eid, or after a hearty meal. The caramelized flavor and creamy texture make it a timeless favorite.",
   category: "Dessert",
-  image: "http://localhost:3000/images/gajjar.jpg",
+  image: "http://localhost:3000/images/gajjar ka halwa.png",
   ingredients: [
     "1 kg grated carrots",
     "1 liter full cream milk",
@@ -154,7 +154,7 @@ Once the masala is ready, add the chopped potatoes and stir them well so they ge
   title: "Zarda – Sweet Yellow Rice",
   description: "Zarda is a traditional Pakistani dessert made with fragrant basmati rice, sugar, milk, and a mix of dry fruits. Colored with saffron or yellow food color, it’s festive, aromatic, and commonly served at weddings and Eid. Sweet, nutty, and comforting.",
   category: "Dessert",
-  image: "http://localhost:3000/images/zarda.jpg",
+  image: "http://localhost:3000/images/zarda.png",
   ingredients: [
     "1 cup basmati rice",
     "½ cup sugar",
@@ -174,7 +174,7 @@ Once done, open the lid and gently fluff the rice with a spoon, being careful no
   title: "Karahi Chicken – Wok-Cooked Chicken Curry",
   description: "Chicken Karahi is a spicy, rich tomato-based curry made in a wok-style pan (karahi). It’s one of the most iconic dishes in Pakistani cuisine, perfect for naan or roti. Cooked with minimal ingredients yet full of flavor, it’s a restaurant and home favorite.",
   category: "Desi",
-  image: "http://localhost:3000/images/chicken-karahi.jpg",
+  image: "http://localhost:3000/images/chicken karahi.png",
   ingredients: [
     "1 kg chicken",
     "4 tomatoes, chopped",
@@ -197,7 +197,7 @@ Turn off the heat and let the karahi rest for a minute so the flavors settle. Se
   title: "Daal Chana – Yellow Lentil Curry",
   description: "Daal Chana is a nutritious and simple lentil curry made with split Bengal gram and tempered with garlic, cumin, and green chilies. It’s a vegetarian staple across Pakistani households and is often enjoyed with boiled rice or roti, along with pickle or salad.",
   category: "Vegetarian",
-  image: "http://localhost:3000/images/chana-masala.jpg",
+  image: "http://localhost:3000/images/daal chana.png",
   ingredients: [
     "1 cup chana dal (split gram)",
     "1 onion, sliced",
@@ -323,7 +323,7 @@ When the Haleem is ready, garnish it with the fried onions you saved earlier, fr
   title: "Anda Curry – Egg Masala",
   description: "Anda Curry is a simple yet delicious curry featuring hard-boiled eggs simmered in a rich tomato and onion-based gravy. It's a great alternative to meat dishes and is full of protein. Enjoy it with warm chapati or boiled rice.",
   category: "Desi",
-  image: "http://localhost:3000/images/tandoori-chicken.jpg",
+  image: "http://localhost:3000/images/andha curry.png",
   ingredients: [
     "4 boiled eggs",
     "1 onion, sliced",
@@ -348,7 +348,7 @@ Finally, sprinkle fresh coriander leaves on top and serve hot with roti, naan, o
   title: "Besan Chilla – Spiced Gram Flour Pancake",
   description: "Besan Chilla is a savory pancake made with gram flour, vegetables, and spices. It's quick, healthy, and ideal for breakfast or lunchboxes. Crispy on the outside and soft inside, it's packed with flavor and protein.",
   category: "Vegetarian",
-  image: "http://localhost:3000/images/bhesan-chilla.jpg",
+  image: "http://localhost:3000/images/bhesan chilla.png",
   ingredients: [
     "1 cup gram flour (besan)",
     "1 onion, chopped",
@@ -393,7 +393,7 @@ Let the kheer cool slightly, then pour it into bowls. You can serve it warm, but
   title: "Chapli Kebab – Peshawari Beef Patties",
   description: "Chapli Kebabs are spicy beef patties from Peshawar, made with crushed spices, herbs, and pomegranate seeds. These flat, crispy kebabs are shallow fried and served with naan and chutney. Bold, juicy, and delicious.",
   category: "Non-Vegetarian",
-  image: "http://localhost:3000/images/chapli-kebab.jpg",
+  image: "http://localhost:3000/images/chapli kebab.png",
   ingredients: [
     "500g ground beef",
     "1 onion, chopped",
@@ -417,7 +417,7 @@ Once cooked, place them on paper towels to absorb extra oil. Serve them hot with
   title: "Chicken Malai Boti – Creamy BBQ Chicken",
   description: "Chicken Malai Boti is a creamy and mildly spiced BBQ dish, made with boneless chicken marinated in cream, yogurt, and mild spices. Perfect for grilling or pan frying, it melts in the mouth and is ideal for Eid or BBQ nights.",
   category: "Non-Vegetarian",
-  image: "http://localhost:3000/images/chicken-malai-boti.jpg",
+  image: "http://localhost:3000/images/chicken malai boti.png",
   ingredients: [
     "500g boneless chicken",
     "¼ cup cream",
@@ -439,7 +439,7 @@ Once done, sprinkle a bit of chaat masala or lemon juice on top and serve hot wi
   title: "Moong Daal – Yellow Lentil Soup",
   description: "Moong Daal is a light, protein-rich lentil dish that's quick to cook and easy to digest. It's perfect for everyday meals and often paired with boiled rice or chapati. Tempered with garlic and cumin, it's comforting and nourishing.",
   category: "Vegetarian",
-  image: "http://localhost:3000/images/Moong-daal.jpg",
+  image: "http://localhost:3000/images/Moong daal.png",
   ingredients: [
     "1 cup moong daal (yellow lentils)",
     "2.5 cups water",
@@ -812,7 +812,7 @@ Preheat grill or oven to 200°C. Place chicken on a tray or grill rack. Cook for
   title: "Mutanjan – Sweet Colored Rice",
   description: "Mutanjan is a traditional Pakistani dessert made from basmati rice, sugar, dry fruits, and food coloring. It’s often served at weddings and festive occasions and features both color and flavor in every bite.",
   category: "Dessert",
-image: "http://localhost:3000/images/Mutanjan – Sweet Colored Rice.jpg",
+image: "http://localhost:3000/images/Mutanjan – Sweet Colored Rice.png",
   ingredients: [
     "2 cups basmati rice",
     "1.5 cups sugar",
@@ -1072,7 +1072,7 @@ Turn off the heat and let the pulao sit covered for another 5 minutes. Fluff gen
   title: "Kachumber Salad – Pakistani Fresh Salad",
   description: "Kachumber Salad is a fresh, crunchy side dish made from finely chopped onions, cucumbers, tomatoes, and lemon juice. It adds a refreshing touch to any spicy curry or rice dish.",
   category: "Vegetarian",
-  image: "http://localhost:3000/images/Kachumber Salad – Pakistani Fresh Salad.jpg",
+  image: "http://localhost:3000/images/Kachumber Salad – Pakistani Fresh Salad.png",
   ingredients: [
     "1 cucumber, chopped",
     "1 onion, chopped",
@@ -1236,7 +1236,68 @@ Garnish with coriander and serve with roti or steamed rice.`
 Spread the mixture evenly on one side of each bread slice. Heat a pan with some butter or oil.
 
 Place the bread slices face down (semolina side) on the pan and toast on low flame until the bottom is golden and crisp. Flip and lightly toast the other side. Serve hot with ketchup or chutney.`
+},
+{
+  title: "15-Minute Garlic Noodles",
+  description: "These 15-Minute Garlic Noodles are a quick and flavorful fix for busy days. Featuring a bold garlic flavor with savory soy sauce, a hint of sesame oil, and a touch of chili, this dish is a favorite for noodle lovers. Inspired by Asian street food, it's simple, satisfying, and ready in no time. You can enjoy it as-is or customize with chicken, tofu, or stir-fried veggies. Perfect for a weeknight dinner or a late-night snack.",
+  category: "Vegetarian",
+  image: "http://localhost:3000/images/15-Minute Garlic Noodles.png",
+  ingredients: [
+    "200g spaghetti or egg noodles",
+    "6 garlic cloves, finely chopped",
+    "2 tbsp soy sauce",
+    "1 tbsp oyster sauce (or mushroom sauce for vegetarian)",
+    "1 tbsp dark soy sauce (optional for color)",
+    "1 tsp sesame oil",
+    "1 tbsp vegetable oil",
+    "1 tsp red chili flakes (optional)",
+    "2 green onions, sliced",
+    "1 tsp sugar",
+    "Salt to taste"
+  ],
+  instructions: `Start by boiling your noodles according to the package instructions. Drain them and set aside, reserving a little pasta water. In a large pan or wok, heat the vegetable oil over medium heat. Add the finely chopped garlic and stir continuously for 30 seconds to 1 minute until it turns golden and fragrant — but not burnt. Add the soy sauce, oyster sauce, dark soy sauce (if using), sesame oil, sugar, and chili flakes to the pan. Stir everything together to make a sauce.
+
+Once the sauce is bubbling slightly, add the cooked noodles to the pan. Toss well using tongs or chopsticks so the noodles are evenly coated with the sauce. If the noodles seem dry, add a tablespoon or two of reserved pasta water. Continue stirring and tossing for 2–3 minutes on low heat to allow flavors to absorb. Turn off the heat, garnish with sliced green onions, and serve hot. These noodles pair well with grilled tofu, stir-fried veggies, or fried eggs.`
+},
+{
+  title: "20-Minute Caprese Chicken",
+  description: "This 20-Minute Caprese Chicken is a juicy, flavorful dish that brings together classic Italian ingredients—ripe tomatoes, fresh basil, and melty mozzarella—over golden pan-seared chicken breasts. It's perfect for weeknight dinners when you want something quick, healthy, and satisfying. The balsamic glaze adds a tangy sweetness that elevates the whole dish, making it taste gourmet with minimal effort. Serve it with a side of pasta, garlic bread, or a fresh green salad for a complete meal.",
+  category: "Non-Vegetarian",
+  image: "http://localhost:3000/images/20-Minute Caprese Chicken.png",
+  ingredients: [
+    "2 boneless, skinless chicken breasts",
+    "1 tbsp olive oil",
+    "Salt and black pepper to taste",
+    "1 tsp garlic powder",
+    "1 tsp Italian seasoning",
+    "2 large tomatoes, sliced",
+    "4 slices fresh mozzarella cheese",
+    "Fresh basil leaves",
+    "2 tbsp balsamic glaze (store-bought or homemade)"
+  ],
+  instructions: `Start by patting the chicken breasts dry with a paper towel. Season both sides with salt, pepper, garlic powder, and Italian seasoning. Heat olive oil in a large skillet over medium-high heat. Once hot, add the chicken breasts and sear them for about 5–6 minutes on each side until golden and cooked through. While the chicken is still in the pan, place two slices of tomato and two slices of mozzarella on top of each chicken breast.
+
+Cover the skillet with a lid and let it cook for 2–3 more minutes until the cheese is melted. Turn off the heat and carefully transfer the chicken to a serving plate. Garnish generously with fresh basil leaves. Finally, drizzle balsamic glaze over each chicken breast just before serving. This dish is best enjoyed hot and pairs wonderfully with a light salad or buttery pasta.`
+},
+{
+  title: "Instant Pot Mac & Cheese",
+  description: "This Instant Pot Mac & Cheese is creamy, cheesy, and unbelievably easy to make in under 20 minutes. Perfect for busy weeknights, this comfort food classic requires no draining or complicated steps. Made with elbow macaroni, cheddar cheese, and a hint of butter and cream, it delivers rich flavor and ultra-smooth texture every time. Customize it with extra cheese, garlic, or even bacon for a heartier version. It’s a guaranteed hit with kids and adults alike.",
+  category: "Vegetarian",
+  image: "http://localhost:3000/images/Instant Pot Mac & Cheese.png",
+  ingredients: [
+    "2 cups elbow macaroni",
+    "2 cups water",
+    "1 cup milk (whole or 2%)",
+    "2 cups shredded cheddar cheese",
+    "2 tbsp unsalted butter",
+    "½ tsp garlic powder (optional)",
+    "Salt and pepper to taste"
+  ],
+  instructions: `Add macaroni, water, butter, and a pinch of salt to the Instant Pot. Stir to combine and close the lid, setting the valve to sealing. Cook on high pressure for 4 minutes. When the time is up, carefully do a quick release of pressure by turning the valve to venting.
+
+Once all the steam has released, open the lid and stir the pasta. It may look watery at first, but that’s normal. Switch the Instant Pot to sauté mode and add the milk, shredded cheese, and garlic powder (if using). Stir continuously until the cheese is fully melted and the sauce becomes creamy. If it seems too thick, add a splash more milk. Season with additional salt and black pepper to taste. Turn off the sauté mode and serve immediately for the creamiest texture. Enjoy hot as a side dish or comforting main course.`
 }
+
 
 
 

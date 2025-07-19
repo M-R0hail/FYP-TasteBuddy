@@ -170,15 +170,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     <p id="bookmarkMessage" style="margin-top: 8px;"></p>
     <img src="${imageURL}" class="recipe-image" alt="${recipe.title}" />
     <p>${recipe.description || ''}</p>
+
     <h3>Ingredients</h3>
     <ul>
       ${ingredients.map(i => `<li>${i.trim()}</li>`).join('')}
     </ul>
+
     <h3>Instructions</h3>
-    <p>${recipe.instructions}</p>
+    <ol class="instruction-list">
+  ${recipe.instructions
+    .split('. ')
+    .filter(step => step.trim())
+    .map((step, index) => `<li><span>Step ${index + 1}:</span> ${step.trim().replace(/\.$/, '')}.</li>`)
+    .join('')}
+</ol>
+
   `;
 
-  // 📌 Add bookmark via backend
+  // 📌 Bookmark logic remains the same
   const bookmarkBtn = document.querySelector(".bookmark-btn");
   const msg = document.getElementById("bookmarkMessage");
 
@@ -213,5 +222,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 }
+
 
 });

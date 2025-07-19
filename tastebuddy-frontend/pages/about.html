@@ -17,28 +17,42 @@
     </div>
 
     <div class="search-bar">
-      <input type="text" placeholder="Search recipes or Ingredients" />
-    </div>
+  <input type="text" id="searchInput" placeholder="Search recipes or ingredients" autocomplete="off" />
+  <ul class="suggestions" id="suggestionList"></ul>
+</div>
+
 
     <div class="menu-wrapper">
+      <div class="menu-toggle" id="menu-toggle"></div>
       <ul class="menu">
-        <li>
-          <a href="index.html">Home</a>
+        <li><a href="index.html">Home</a>
+          <ul class="dropdown">
+            <li><a href="login.html">Login</a></li>
+            <li><a href="recipe.html">Recipe page</a></li>
+          </ul>
         </li>
-        <li>
-          <a href="recipe.html">Categories</a>
+        <li><a href="#category-scroll">Categories</a>
         </li>
-        <li>
-          <a href="recipe.html">All Recipes</a>
+        <li><a href="recipe.html">All Recipes</a>
+          <ul class="dropdown">
+            <li><a href="recipe.html">Vegetarian</a></li>
+            <li><a href="recipe.html">Vegan</a></li>
+            <li><a href="recipe.html">Low-Carb</a></li>
+          </ul>
         </li>
-        <li>
-          <a href="about.html">About</a>
+        <li><a href="dashboard.html">User Dashboard</a>
         </li>
-        <li>
-          <a href="contact-us.html">Contact</a>
+        <li><a href="contact-us.html">Contact</a>
         </li>
       </ul>
-      <div class="mode-toggle">🌙</div>
+
+      <div class="auth-links">
+        <a href="login.html" class="btn login-btn">Login</a>
+        <a href="signup.html" class="btn signup-btn">Sign Up</a>
+      </div>
+
+      <!-- Home page dark/light mode option -->
+      <div class="mode-toggle" id="modeToggle">🌙</div>
     </div>
   </nav>
 

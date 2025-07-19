@@ -246,7 +246,6 @@ body.dark-mode .search-bar input {
   cursor: pointer;
 }
 
-
 header {
   position: relative;
   height: 60vh;
@@ -598,62 +597,110 @@ body.dark-mode .recipe-card .button:hover {
 }
 
 
+/* ✅ QUICK RECIPES SECTION */
 .quick-recipes {
-  margin-top: 4rem;
+  padding: 60px 20px;
+  background: #fff5ec;
   text-align: center;
 }
 
 .quick-recipes h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: #f05454;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #1d392f;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.quick-recipes .cards {
+/* ✅ Recipe Cards Grid */
+.cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  max-width: 1300px;
-  margin: 0 auto 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin-bottom: 40px;
 }
 
-.quick-recipes .card {
-  background: #f0f8f0;
-  padding: 1.5rem 1rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: default;
-  transition: transform 0.3s ease;
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 30px;
+  width: 100%;
+  max-width: 600px; /* ⬅️ increase horizontal width */
+  min-height: 90px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 1.2rem;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card a {
+  text-decoration: none;
   color: #1d392f;
+  display: block;
 }
 
-.quick-recipes .card:hover {
-  transform: scale(1.05);
+.card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
+/* ✅ CTA Button */
 .quick-btn-wrapper {
-  text-align: center;
+  margin-top: 20px;
 }
 
 .quick-btn {
-  background-color: #f05454;
+  display: inline-block;
+  padding: 12px 28px;
+  background: #f05454;
   color: white;
-  padding: 0.8rem 2rem;
-  border-radius: 30px;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1rem;
+  border-radius: 30px;
   text-decoration: none;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .quick-btn:hover {
-  background-color: #c0392b;
+  background-color: #d94343;
 }
+
+/* ✅ Dark Mode Support */
+body.dark-mode .quick-recipes {
+  background: #1e1e1e;
+}
+
+body.dark-mode .quick-recipes h2 {
+  color: #f0f0f0;
+}
+
+body.dark-mode .card {
+  background: #2a2a2a;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .card h3 {
+  color: #f0f0f0;
+}
+
+body.dark-mode .quick-btn {
+  background: #f05454;
+  color: #fff;
+}
+
+body.dark-mode .quick-btn:hover {
+  background: #d94343;
+}
+
 
 .menu-toggle {
   display: none;

@@ -18,43 +18,38 @@ body.dark-mode {
   background-color: #121212;
   color: #f0f0f0;
 }
-
 /* General nav layout */
 nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 1rem 2rem;
   background: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 10;
-  gap: 1rem;
 }
 
-body.dark-mode nav {
-  background-color: #1e1e1e;
-}
 
 .logo img {
-  height: 60px;
+  height: 85px;
   width: auto;
+  max-width: 20vw;
 }
 
-/* Search bar styling */
-.search-bar { 
+/* search bar code start from here */
+ .search-bar {
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  position: relative;
 }
 
 .search-bar input {
-  width: 40%; /* Adjusted for more space */
+  width: 85%;
   padding: 0.5rem 1rem;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -67,12 +62,10 @@ body.dark-mode nav {
   border-color: #f05454;
   box-shadow: 0 0 5px rgba(240, 84, 84, 0.5);
 }
-
-/* Suggestions dropdown */
 .suggestions {
   position: absolute;
   top: 100%;
-  left: 50%;
+  left: 41%;
   transform: translateX(-50%);
   width: 60%;
   background: #fff;
@@ -98,15 +91,47 @@ body.dark-mode nav {
   background-color: #f0f0f0;
 }
 
-/* Dark mode for suggestions */
 body.dark-mode .suggestions {
   background: #1e1e1e;
   color: #fff;
   border-color: #444;
 }
 
+
 body.dark-mode .suggestions li:hover {
   background-color: #333;
+}
+
+
+
+
+/* 🌙 Dark Mode Support */
+body.dark-mode #searchInput {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  border: 1px solid #555;
+}
+
+body.dark-mode #searchInput:focus {
+  border-color: #f05454;
+  box-shadow: 0 0 5px rgba(240, 84, 84, 0.5);
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode nav {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .menu li a {
+  color: #f0f0f0;
+}
+
+body.dark-mode .menu li a:hover {
+  color: #ff9800;
 }
 
 body.dark-mode .search-bar input {
@@ -115,20 +140,33 @@ body.dark-mode .search-bar input {
   border: 1px solid #444;
 }
 
-/* Menu layout */
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  #searchInput {
+    width: 90%;
+    font-size: 0.95rem;
+  }
+}
+
+
 .menu-wrapper {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  flex-shrink: 0;
+  gap: 1rem;
 }
 
+/* menus of nav bar */
 .menu {
   list-style: none;
   display: flex;
   gap: 2rem;
   margin: 0;
   padding: 0;
+  position: relative;
+}
+
+.menu>li {
+  position: relative;
 }
 
 .menu li a {
@@ -142,63 +180,78 @@ body.dark-mode .search-bar input {
   color: #f05454;
 }
 
-/* Dark mode menu links */
-body.dark-mode .menu li a {
-  color: #fff;
+/* Dropdown styles */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  padding: 0.5rem 0;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: none;
+  min-width: 150px;
+  z-index: 9;
 }
 
-body.dark-mode .menu li a:hover {
-  color: #f05454;
+.dropdown li {
+  padding: 0.5rem 1rem;
 }
 
-/* Dark mode toggle */
-.mode-toggle {
-  font-size: 1.3rem;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  user-select: none;
+.dropdown li a {
+  color: #1d392f;
+  display: block;
+  transition: background0.3s;
 }
 
-body.dark-mode .mode-toggle {
-  color: #fff;
+.dropdown li a:hover {
+  background: #f5f5f5;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .search-bar input {
-    width: 70%;
-  }
-
-  .menu {
-    gap: 1.2rem;
-  }
-
-  .menu-wrapper {
-    gap: 1rem;
-  }
+/* Show dropdown on hover */
+.menu>li:hover .dropdown {
+  display: block;
 }
 
-
-body.dark-mode .menu li a {
-  color: #f0f0f0;
+.auth-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-left: auto;
 }
 
-body.dark-mode .menu li a:hover {
+.btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.login-btn {
+  background: transparent;
+  border: 1px solid #ff9800;
   color: #ff9800;
 }
 
-.mode-toggle {
-  cursor: pointer;
-  font-size: 1.8rem;
-  color: #1d392f;
-  margin-left: 10px;
-  margin-right: 5px;
-  display: flex;
-  align-items: center;
+.login-btn:hover {
+  background: #ff9800;
+  color: white;
 }
 
-body.dark-mode .mode-toggle {
-  color: #f0f0f0;
+.signup-btn {
+  background: #ff5722;
+  color: white;
+  border: none;
+}
+
+.signup-btn:hover {
+  background: #e64a19;
+}
+
+.mode-toggle {
+  cursor: pointer;
 }
 
 .main {
@@ -210,7 +263,7 @@ body.dark-mode .mode-toggle {
 }
 
 .sidebar {
-  width: 25%;
+  width: 22%;
   background-color: #f8f8f8;
   padding: 20px;
   overflow-y: auto;
@@ -391,4 +444,71 @@ body.dark-mode .filter-buttons button.active {
 
 .bookmark-btn:hover {
   background-color: #e66b1e;
+}
+
+/* Numbered instruction list style */
+.instruction-list {
+  counter-reset: step;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.instruction-list li {
+  margin-bottom: 15px;
+  padding: 12px 14px;
+  border-left: 5px solid #f05454;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: relative;
+  line-height: 1.6;
+  list-style: none;
+}
+
+.instruction-list li span {
+  font-weight: bold;
+  color: #f05454;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Dark mode styles for instructions */
+body.dark-mode .instruction-list li {
+  background: #2a2a2a;
+  border-left-color: #ff7043;
+  color: #f0f0f0;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .instruction-list li span {
+  color: #ff914d;
+}
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .content {
+    padding: 16px;
+  }
+
+  .instruction-list li {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .instruction-list li span {
+    font-size: 15px;
+  }
+
+  .filter-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
