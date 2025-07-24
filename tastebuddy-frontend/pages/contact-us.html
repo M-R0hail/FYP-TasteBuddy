@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us</title>
+  <!-- Google Fonts: Poppins for all text -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts and FontAwesome -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/contact-us.css">
 </head>
-
 <body>
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- Navigation Bar -->
   <nav>
     <div class="logo">
       <img src="../Assests/logo.png" alt="Taste Buddy Logo">
     </div>
-
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <i class="fas fa-bars"></i>
+    </button>
     <div class="search-bar">
-  <input type="text" id="searchInput" placeholder="Search recipes or ingredients" autocomplete="off" />
-  <ul class="suggestions" id="suggestionList"></ul>
-</div>
-
-
+      <input type="text" id="searchInput" placeholder="Search recipes or ingredients" autocomplete="off" />
+      <ul class="suggestions" id="suggestionList"></ul>
+    </div>
     <div class="menu-wrapper">
-      <div class="menu-toggle" id="menu-toggle"></div>
       <ul class="menu">
         <li><a href="index.html">Home</a>
           <ul class="dropdown">
@@ -31,46 +34,64 @@
             <li><a href="recipe.html">Recipe page</a></li>
           </ul>
         </li>
-        <li><a href="recipe.html">Categories</a>
-        </li>
-        <li><a href="recipe.html">All Recipes</a>
-        </li>
+        <li><a href="recipe.html">Categories</a></li>
+        <li><a href="recipe.html">All Recipes</a></li>
         <li><a href="dashboard.html">User Dashboard</a>
           <ul class="dropdown">
             <li><a href="about.html">Our Story</a></li>
           </ul>
         </li>
-        <li><a href="contact-us.html">Contact</a>
-        </li>
+        <li><a href="contact-us.html">Contact</a></li>
       </ul>
-
       <div class="auth-links">
         <a href="login.html" class="btn login-btn">Login</a>
         <a href="signup.html" class="btn signup-btn">Sign Up</a>
       </div>
-
-      <!-- Home page dark/light mode option -->
+      <!-- Dark/Light Mode Toggle -->
       <div class="mode-toggle" id="modeToggle">🌙</div>
     </div>
   </nav>
-  <section class="contact-container">
-    <h1 class="contact-title">Contact Us</h1>
-    <h2 class="contact-subtitle">We'd love to hear from you!</h2>
 
-    <div class="contact-details">
-      <p><strong>Email:</strong> <a href="mailto:support@tastebuddy.com">support@tastebuddy.com</a></p>
-      <p><strong>Phone:</strong> +92 (328) 7670-181</p>
-      <p><strong>Address:</strong> 123 Food Street, Jaranwala,Faisalabad</p>
-    </div>
+  <!-- Main Contact Page -->
+  <main class="contact-page">
+    <section class="contact-container" id="main-content">
+      <h1 class="contact-title">Contact Us</h1>
+      <h2 class="contact-subtitle">We'd love to hear from you!</h2>
+      <!-- Contact Details -->
+      <div class="contact-details">
+        <p><span>Email:</span> muhammadrohail955@gmail.com</p>
+        <p><span>Phone:</span> 0328 7670181</p>
+        <p><span>Address:</span> Jaranwala, Pakistan</p>
+      </div>
+      <!-- Social Links -->
+      <ul class="social-links">
+        <li><a href="https://www.facebook.com/share/1Ay523zYUn/">Facebook: @TasteBuddy</a></li>
+        <li><a href="https://www.instagram.com/leopard.923008?utm_source=qr&igsh=aXJjY3IyZW1vYTAw">Instagram: @TasteBuddy</a></li>
+        <li><a href="https://x.com/AliGujjar124806?t=epoQL3eQVJ8ckajMGQQXIw&s=08">Twitter: @TasteBuddy</a></li>
+      </ul>
+      <!-- WhatsApp Contact -->
+      <div class="whatsapp-contact">
+        <a href="https://wa.me/923287670181?text=Hi%20TasteBuddy%2C%20I%20want%20to%20ask%20something" target="_blank">
+          💬 Message us on WhatsApp
+        </a>
+      </div>
+      <!-- Get Directions Button -->
+      <div class="map-link">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Jaranwala,+Faisalabad,+Pakistan" target="_blank">
+          📍 Directions on Google Maps
+        </a>
+      </div>
+      <!-- Embedded Google Map -->
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.548420131518!2d73.43781231512741!3d31.33143498143651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39228bfa5fdc8b77%3A0x14e9e0e2d5376f02!2sJaranwala%2C%20Faisalabad%2C%20Pakistan!5e0!3m2!1sen!2s!4v1626681234567"
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </section>
+  </main>
 
-
-    <ul class="social-links">
-      <li><a href="#">Facebook: @TasteBuddy</a></li>
-      <li><a href="#">Instagram: @TasteBuddy</a></li>
-      <li><a href="#">Twitter: @TasteBuddy</a></li>
-    </ul>
-  </section>
-
+  <!-- Footer Section -->
   <footer>
     <div class="footer-container">
       <div class="footer-logo-social">
@@ -78,25 +99,20 @@
           <img src="../Assests/foot-logo.png" alt="Taste Buddy Logo" />
         </a>
         <div class="social-icons">
-          <a href="https://www.facebook.com/share/1Ay523zYUn/" target="_blank" aria-label="Facebook"
-            class="social-link">
+          <a href="https://www.facebook.com/share/1Ay523zYUn/" target="_blank" aria-label="Facebook" class="social-link">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="https://x.com/AliGujjar124806?t=epoQL3eQVJ8ckajMGQQXIw&s=08" target="_blank" aria-label="Twitter"
-            class="social-link">
+          <a href="https://x.com/AliGujjar124806?t=epoQL3eQVJ8ckajMGQQXIw&s=08" target="_blank" aria-label="Twitter" class="social-link">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="https://www.instagram.com/leopard.923008?utm_source=qr&igsh=aXJjY3IyZW1vYTAw" target="_blank"
-            aria-label="Instagram" class="social-link">
+          <a href="https://www.instagram.com/leopard.923008?utm_source=qr&igsh=aXJjY3IyZW1vYTAw" target="_blank" aria-label="Instagram" class="social-link">
             <i class="fab fa-instagram"></i>
           </a>
           <a href="https://www.linkedin.com/in/mhdrohail" target="_blank" aria-label="LinkedIn" class="social-link">
             <i class="fab fa-linkedin-in"></i>
           </a>
         </div>
-
       </div>
-
       <div class="footer-links">
         <div class="link-group">
           <h4>Company</h4>
@@ -116,20 +132,15 @@
           </ul>
         </div>
       </div>
-
       <div class="footer-about">
         <h4>About Taste Buddy</h4>
-        <p>Your go-to platform for quick, delicious recipes that make cooking easy and fun. Discover new meals every day
-          and enjoy cooking at home!</p>
+        <p>Your go-to platform for quick, delicious recipes that make cooking easy and fun. Discover new meals every day and enjoy cooking at home!</p>
       </div>
     </div>
-
     <div class="footer-bottom">
       <p>&copy; 2025 Taste Buddy. All rights reserved.</p>
     </div>
   </footer>
   <script src="../js/contact-us.js"></script>
-
 </body>
-
 </html>

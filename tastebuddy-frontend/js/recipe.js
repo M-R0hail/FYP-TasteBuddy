@@ -109,9 +109,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     let filtered = [...allRecipes];
 
     if (currentCategory !== 'All') {
-      filtered = filtered.filter(r =>
-        r.category?.toLowerCase().trim() === currentCategory.toLowerCase().trim()
-      );
+      filtered = filtered.filter(r => {
+        let btnCat = currentCategory.toLowerCase().trim();
+        let recCat = (r.category || '').toLowerCase().trim();
+        // Allow singular/plural match (Dessert/Desserts, Drink/Drinks)
+        if (btnCat.endsWith('s') && !recCat.endsWith('s')) btnCat = btnCat.slice(0, -1);
+        if (recCat.endsWith('s') && !btnCat.endsWith('s')) recCat = recCat.slice(0, -1);
+        return recCat === btnCat;
+      });
     }
 
     if (query) {
@@ -153,75 +158,71 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // ✅ Show Recipe Details + Bookmark Button
   function showRecipeDetails(recipe) {
-  const content = document.querySelector(".content");
-  const userId = localStorage.getItem("userId") || sessionStorage.getItem("userId");
+    const content = document.querySelector(".content");
+    const userId = localStorage.getItem("userId") || sessionStorage.getItem("userId");
 
-  const ingredients = Array.isArray(recipe.ingredients)
-    ? recipe.ingredients
-    : recipe.ingredients.split(',');
+    const ingredients = Array.isArray(recipe.ingredients)
+      ? recipe.ingredients
+      : recipe.ingredients.split(',');
 
-  const imageURL = recipe.image.startsWith("http")
-    ? recipe.image
-    : `http://localhost:3000/images/${recipe.image}`;
+    const imageURL = recipe.image.startsWith("http")
+      ? recipe.image
+      : `http://localhost:3000/images/${recipe.image}`;
 
-  content.innerHTML = `
-    <h2>${recipe.title}</h2>
-    <button class="bookmark-btn" data-id="${recipe.id}">🔖 Bookmark</button>
-    <p id="bookmarkMessage" style="margin-top: 8px;"></p>
-    <img src="${imageURL}" class="recipe-image" alt="${recipe.title}" />
-    <p>${recipe.description || ''}</p>
+    content.innerHTML = `
+      <h2>${recipe.title}</h2>
+      <button class="bookmark-btn" data-id="${recipe.id}">🔖 Bookmark</button>
+      <p id="bookmarkMessage" style="margin-top: 8px;"></p>
+      <img src="${imageURL}" class="recipe-image" alt="${recipe.title}" />
+      <p>${recipe.description || ''}</p>
+      <h3>Ingredients</h3>
+      <ul>
+        ${ingredients.map(i => `<li>${i.trim()}</li>`).join('')}
+      </ul>
+      <h3>Instructions</h3>
+      <ol class="instruction-list">
+        ${recipe.instructions
+          .split('. ')
+          .filter(step => step.trim())
+          .map((step, index) => `<li><span>Step ${index + 1}:</span> ${step.trim().replace(/\.$/, '')}.</li>`)
+          .join('')}
+      </ol>
+    `;
 
-    <h3>Ingredients</h3>
-    <ul>
-      ${ingredients.map(i => `<li>${i.trim()}</li>`).join('')}
-    </ul>
+    const bookmarkBtn = document.querySelector(".bookmark-btn");
+    const msg = document.getElementById("bookmarkMessage");
 
-    <h3>Instructions</h3>
-    <ol class="instruction-list">
-  ${recipe.instructions
-    .split('. ')
-    .filter(step => step.trim())
-    .map((step, index) => `<li><span>Step ${index + 1}:</span> ${step.trim().replace(/\.$/, '')}.</li>`)
-    .join('')}
-</ol>
-
-  `;
-
-  // 📌 Bookmark logic remains the same
-  const bookmarkBtn = document.querySelector(".bookmark-btn");
-  const msg = document.getElementById("bookmarkMessage");
-
-  bookmarkBtn.addEventListener("click", async () => {
-    if (!userId) {
-      msg.textContent = "❌ Please log in first.";
-      msg.style.color = "red";
-      return;
-    }
-
-    try {
-      const res = await fetch("http://localhost:3000/api/bookmark", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, recipeId: recipe.id })
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        msg.textContent = "✅ Bookmarked successfully!";
-        msg.style.color = "green";
-        bookmarkBtn.disabled = true;
-      } else {
-        msg.textContent = data.error || "⚠️ Already bookmarked.";
-        msg.style.color = "orange";
+    // Only allow adding bookmarks
+    bookmarkBtn.addEventListener("click", async () => {
+      if (!userId) {
+        msg.textContent = "❌ Please log in first.";
+        msg.style.color = "red";
+        return;
       }
-    } catch (err) {
-      console.error("Bookmark Error:", err);
-      msg.textContent = "❌ Error bookmarking.";
-      msg.style.color = "red";
-    }
-  });
-}
+      bookmarkBtn.disabled = true;
+      try {
+        const res = await fetch("http://localhost:3000/api/bookmark", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId, recipeId: recipe.id })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          msg.textContent = "✅ Bookmarked successfully!";
+          msg.style.color = "green";
+          bookmarkBtn.disabled = true;
+        } else {
+          msg.textContent = data.error || "⚠️ Already bookmarked.";
+          msg.style.color = "orange";
+          bookmarkBtn.disabled = true;
+        }
+      } catch (err) {
+        msg.textContent = "❌ Error bookmarking.";
+        msg.style.color = "red";
+        bookmarkBtn.disabled = false;
+      }
+    });
+  }
 
 
 });

@@ -1,3 +1,15 @@
+// Hamburger menu toggle for mobile
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburgerBtn");
+  const menuWrapper = document.querySelector(".menu-wrapper");
+  if (hamburger && menuWrapper) {
+    hamburger.addEventListener("click", () => {
+      menuWrapper.classList.toggle("active");
+    });
+  }
+});
+
 // ========== Dark Mode with localStorage ==========
 
 const modeToggle = document.querySelector('.mode-toggle');

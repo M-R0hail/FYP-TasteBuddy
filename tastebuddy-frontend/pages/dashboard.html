@@ -4,26 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User Dashboard - TasteBuddy</title>
+  <!-- Google Fonts: Poppins for all text -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/dashboard.css" />
 </head>
 <body>
-  <!-- Header (unchanged) -->
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- Navigation Bar -->
   <nav>
     <div class="logo">
-  <a href="index.html">
-    <img src="../Assests/logo.png" alt="Taste Buddy Logo">
-  </a>
-</div>
-
-
+      <a href="index.html">
+        <img src="../Assests/logo.png" alt="Taste Buddy Logo">
+      </a>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <i class="fas fa-bars"></i>
+    </button>
     <div class="search-bar">
-  <input type="text" id="searchInput" placeholder="Search recipes or ingredients" autocomplete="off" />
-  <ul class="suggestions" id="suggestionList"></ul>
-</div>
-
-
+      <input type="text" id="searchInput" placeholder="Search recipes or ingredients" autocomplete="off" />
+      <ul class="suggestions" id="suggestionList"></ul>
+    </div>
     <div class="menu-wrapper">
-      <div class="menu-toggle" id="menu-toggle"></div>
       <ul class="menu">
         <li><a href="index.html">Home</a>
           <ul class="dropdown">
@@ -31,63 +33,63 @@
             <li><a href="recipe.html">Recipe page</a></li>
           </ul>
         </li>
-        <li><a href="#category-scroll">Categories</a>
-          <ul class="dropdown">
-            <li><a href="#category-scroll">All</a></li>
-            <li><a href="#category-scroll">DESI</a></li>
-            <li><a href="#category-scroll">VEGETARIAN</a></li>
-            <li><a href="#category-scroll">NON-VEGETARIAN</a></li>
-          </ul>
-        </li>
-        <li><a href="recipe.html">All Recipes</a>
-          <ul class="dropdown">
-            <li><a href="recipe.html">Vegetarian</a></li>
-            <li><a href="recipe.html">Vegan</a></li>
-            <li><a href="recipe.html">Low-Carb</a></li>
-          </ul>
-        </li>
+        <li><a href="#category-scroll">Categories</a></li>
+        <li><a href="recipe.html">All Recipes</a></li>
         <li><a href="dashboard.html">User Dashboard</a>
           <ul class="dropdown">
             <li><a href="about.html">Our Story</a></li>
           </ul>
         </li>
-        <li><a href="contact-us.html">Contact</a>
-        </li>
+        <li><a href="contact-us.html">Contact</a></li>
       </ul>
-
       <div class="auth-links">
         <a href="login.html" class="btn login-btn">Login</a>
         <a href="signup.html" class="btn signup-btn">Sign Up</a>
       </div>
-
-      <!-- Home page dark/light mode option -->
+      <!-- Dark/Light Mode Toggle -->
       <div class="mode-toggle" id="modeToggle">🌙</div>
     </div>
   </nav>
 
-  <main class="dashboard">
-    <div class="avatar-selector-wrapper">
-  <label for="avatarSelect">Choose Your Avatar:</label>
-  <select id="avatarSelect">
-    <option value="👨‍🍳">👨‍🍳 Chef (Male)</option>
-    <option value="👩‍🍳">👩‍🍳 Chef (Female)</option>
-    <option value="🍕">🍕 Pizza</option>
-    <option value="🍔">🍔 Burger</option>
-    <option value="🥗">🥗 Salad</option>
-    <option value="🍩">🍩 Donut</option>
-    <option value="🍳">🍳 Frying Pan</option>
-    <option value="👨‍🌾">👨‍🌾 Farmer</option>
-  </select>
-</div>
-
-<!-- Display Avatar -->
-<div id="emojiAvatar" class="emoji-avatar"></div>
-
-
+  <!-- Main Dashboard Content -->
+  <main class="dashboard" id="main-content">
     <header>
       <h1>Welcome, <span id="username">User</span> 👋</h1>
     </header>
+    <!-- Avatar Selection -->
+    <div class="avatar-card">
+      <h2>🌟 Select Your Cooking Avatar</h2>
+      <div class="avatar-preview" id="avatarPreview">🧑‍🍳</div>
+      <label for="avatarSelect">Choose Your Avatar:</label>
+      <div class="circle">
+        <select id="avatarSelect">
+          <!-- Human-style avatars -->
+          <option value="🧑">🧑 Chef</option>
+          <option value="👩‍🍳">👩‍🍳 Female Chef</option>
+          <option value="👨‍🍳">👨‍🍳 Male Chef</option>
+          <option value="🧑">🧑 Student</option>
+          <option value="👩‍🎓">👩‍🎓 Girl Student</option>
+          <option value="👨‍🎓">👨‍🎓 Boy Student</option>
+          <option value="👩‍🌾">👩‍🌾 Female Farmer</option>
+          <option value="👨‍🌾">👨‍🌾 Male Farmer</option>
+          <option value="🧑">🧑 Person</option>
+          <option value="👩">👩 Woman</option>
+          <option value="👨">👨 Man</option>
+          <!-- Food-themed avatars -->
+          <option value="🧁">🧁 Cupcake</option>
+          <option value="🍰">🍰 Cake</option>
+          <option value="🍜">🍜 Ramen</option>
+          <option value="🍗">🍗 Grill</option>
+          <option value="🍕">🍕 Pizza</option>
+          <option value="🍔">🍔 Burger</option>
+          <option value="🥗">🥗 Salad</option>
+          <option value="🍳">🍳 Pan</option>
+        </select>
+      </div>
+    </div>
+    <div id="emojiAvatar" class="emoji-avatar"></div>
 
+    <!-- Bookmarked Recipes Section -->
     <section class="section">
       <h2>📌 Bookmarked Recipes</h2>
       <div class="card-container" id="bookmarks">
@@ -95,39 +97,36 @@
       </div>
     </section>
 
+    <!-- Weekly Cooking Plan Section -->
     <section class="weekly-plan-section">
-  <h2>📅 This Week's Cooking Plan</h2>
-  <ul class="weekly-plan-list">
-    <li><a href="recipe.html?id=1">Monday: Chana Masala</a></li>
-    <li><a href="recipe.html?id=2">Tuesday: Gajar Ka Halwa</a></li>
-    <li><a href="recipe.html?id=3">Wednesday: Seekh Kebabs</a></li>
-    <li><a href="recipe.html?id=5">Thursday: Shami Kebabs</a></li>
-    <li><a href="recipe.html?id=11">Friday: Beef Kofta Curry</a></li>
-  </ul>
-</section>
+      <h2>📅 This Week's Cooking Plan</h2>
+      <ul class="weekly-plan-list">
+        <li><a href="recipe.html?id=1">Monday: Chana Masala</a></li>
+        <li><a href="recipe.html?id=2">Tuesday: Gajar Ka Halwa</a></li>
+        <li><a href="recipe.html?id=3">Wednesday: Seekh Kebabs</a></li>
+        <li><a href="recipe.html?id=5">Thursday: Shami Kebabs</a></li>
+        <li><a href="recipe.html?id=11">Friday: Beef Kofta Curry</a></li>
+      </ul>
+    </section>
 
-
-
+    <!-- Two Column Section: Recipe of the Day & Notes -->
     <div class="two-column-section">
       <section class="section">
-  <h2>📚 Recipe of the Day</h2>
-  <a href="recipe.html?id=3" class="card" style="text-decoration: none; color: inherit;">
-    <img src="http://localhost:3000/images/seekh-kebab.jpg" alt="Beef Pulao" />
-    <div class="card-content">
-      <h3>Seekh Kebabs – Minced Meat Skewers</h3>
-      <p> Juicy minced meat skewers spiced with herbs and grilled to smoky perfection — a BBQ favorite across Pakistan!</p>
-    </div>
-  </a>
-</section>
-
-
+        <h2>📚 Recipe of the Day</h2>
+        <a href="recipe.html?id=3" class="card" style="text-decoration: none; color: inherit;">
+          <img src="http://localhost:3000/images/seekh-kebab.jpg" alt="Beef Pulao" />
+          <div class="card-content">
+            <h3>Seekh Kebabs – Minced Meat Skewers</h3>
+            <p>Juicy minced meat skewers spiced with herbs and grilled to smoky perfection — a BBQ favorite across Pakistan!</p>
+          </div>
+        </a>
+      </section>
       <section class="section">
         <h2>📝 Personal Cooking Notes</h2>
         <textarea id="userNotes" placeholder="Write your cooking plans or notes here..." rows="8"></textarea>
       </section>
     </div>
   </main>
-
   <script src="../js/dashboard.js"></script>
 </body>
 </html>

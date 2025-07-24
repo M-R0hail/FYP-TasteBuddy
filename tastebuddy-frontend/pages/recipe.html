@@ -5,74 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Recipe Page</title>
   <link rel="stylesheet" href="../css/recipe.css">
+  <!-- Google Fonts: Poppins for all text -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- ✅ HEADER -->
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- Navigation Bar -->
   <nav>
     <div class="logo">
-  <a href="index.html">
-    <img src="../Assests/logo.png" alt="Taste Buddy Logo">
-  </a>
-</div>
-
-
+      <a href="index.html">
+        <img src="../Assests/logo.png" alt="Taste Buddy Logo">
+      </a>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <i class="fas fa-bars"></i>
+    </button>
     <div class="search-bar">
-  <input type="text" id="searchInput" placeholder="Search recipes or ingredients" autocomplete="off" />
-  <ul class="suggestions" id="suggestionList"></ul>
-</div>
-
-
+      <input type="text" id="searchInput" placeholder="Search recipes or ingredients" autocomplete="off" />
+      <ul class="suggestions" id="suggestionList"></ul>
+    </div>
     <div class="menu-wrapper">
-      <div class="menu-toggle" id="menu-toggle"></div>
       <ul class="menu">
         <li><a href="index.html">Home</a>
           <ul class="dropdown">
             <li><a href="login.html">Login</a></li>
-            <li><a href="recipe.html">Recipe page</a></li>
-            <li><a href="#trending-scroll">Trending</a></li>
           </ul>
         </li>
-        <li><a href="#category-scroll">Categories</a>
-          <ul class="dropdown">
-            <li><a href="#category-scroll">All</a></li>
-            <li><a href="#category-scroll">DESI</a></li>
-            <li><a href="#category-scroll">VEGETARIAN</a></li>
-            <li><a href="#category-scroll">NON-VEGETARIAN</a></li>
-          </ul>
-        </li>
-        <li><a href="recipe.html">All Recipes</a>
-          <ul class="dropdown">
-            <li><a href="recipe.html">Vegetarian</a></li>
-            <li><a href="recipe.html">Vegan</a></li>
-            <li><a href="recipe.html">Low-Carb</a></li>
-          </ul>
-        </li>
-        <li><a href="dashboard.html">User Dashboard</a>
-          <ul class="dropdown">
-            <li><a href="about.html">Our Story</a></li>
-            <li><a href="#chef-scroll">Meet the Team</a></li>
-          </ul>
-        </li>
+        <li><a href="#category-scroll">Categories</a></li>
+        <li><a href="recipe.html">All Recipes</a></li>
+        <li><a href="dashboard.html">User Dashboard</a></li>
         <li><a href="contact-us.html">Contact</a>
           <ul class="dropdown">
             <li><a href="contact-us.html">Email</a></li>
-            <li><a href="#socialmedia-scroll">Social Media</a></li>
           </ul>
         </li>
       </ul>
-
       <div class="auth-links">
         <a href="login.html" class="btn login-btn">Login</a>
         <a href="signup.html" class="btn signup-btn">Sign Up</a>
       </div>
-
-      <!-- Home page dark/light mode option -->
-      <div class="mode-toggle" id="modeToggle">🌙</div>
+      <!-- Dark/Light Mode Toggle -->
       <div class="mode-toggle" id="modeToggle">🌙</div>
     </div>
   </nav>
 
-  <!-- ✅ FILTER BUTTONS -->
+  <!-- Filter Buttons -->
   <div class="filter-bar">
     <div class="filter-buttons" id="filter-buttons">
       <button data-category="All" class="active">All</button>
@@ -84,16 +62,58 @@
     </div>
   </div>
 
-  <!-- ✅ MAIN CONTENT -->
-  <div class="main">
+  <!-- Main Content: Sidebar and Recipe Details -->
+  <div class="main" id="main-content">
     <div class="sidebar" id="recipe-list">
-      <!-- List of recipe titles -->
+      <!-- List of recipe titles will be loaded here -->
     </div>
     <div class="content" id="recipe-details">
       <p>Select a recipe to view details.</p>
     </div>
-  </div> 
+  </div>
 
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo-social">
+        <a href="#" class="footer-logo"><img src="../Assests/foot-logo.png" alt="Taste Buddy Logo" /></a>
+        <div id="socialmedia-scroll">
+          <div class="social-icons">
+            <a href="https://www.facebook.com/share/1Ay523zYUn/" target="_blank" aria-label="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/AliGujjar124806?t=epoQL3eQVJ8ckajMGQQXIw&s=08" target="_blank" aria-label="Twitter" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/leopard.923008?utm_source=qr&igsh=aXJjY3IyZW1vYTAw" target="_blank" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/mhdrohail" target="_blank" aria-label="LinkedIn" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="link-group">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="link-group">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-about">
+        <h4>About Taste Buddy</h4>
+        <p>Your go-to platform for quick, delicious recipes that make cooking easy and fun. Discover new meals every day and enjoy cooking at home!</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Taste Buddy. All rights reserved.</p>
+    </div>
+  </footer>
   <script src="../js/recipe.js"></script>
 </body>
 </html>
