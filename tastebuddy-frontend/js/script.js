@@ -1,11 +1,6 @@
 // =====================
 // Mobile Menu Toggle
 // =====================
-// Remove old menu-toggle event if not used
-// document.getElementById('menu-toggle')?.addEventListener('click', () => {
-//   document.querySelector('.menu-wrapper')?.classList.toggle('active');
-// });
-
 document.addEventListener("DOMContentLoaded", () => {
   // Hamburger menu for mobile
   const hamburger = document.getElementById("hamburgerBtn");
@@ -34,10 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // =====================
   // Recipe Search & Filtering
   // =====================
-  const recipeList = document.getElementById('recipe-list');
-  const recipeDetails = document.getElementById('recipe-details');
-  const searchInput = document.getElementById('searchInput');
-  const filterButtons = document.getElementById('filter-buttons');
+  const recipeList = document.getElementById("recipe-list");
+  const recipeDetails = document.getElementById("recipe-details");
+  const searchInput = document.getElementById("searchInput");
+  const filterButtons = document.getElementById("filter-buttons");
   const urlParams = new URLSearchParams(window.location.search);
   const recipeId = urlParams.get("id");
   const userId = localStorage.getItem("userId") || 1;
@@ -45,10 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // If viewing a single recipe
   if (recipeId && recipeDetails) {
     fetch(`http://localhost:3000/api/recipes/${recipeId}`)
-      .then(res => res.json())
-      .then(recipe => {
+      .then((res) => res.json())
+      .then((recipe) => {
         const ingredients = JSON.parse(recipe.ingredients || "[]");
-        const ingredientsHTML = ingredients.map(i => `<li>${i}</li>`).join("");
+        const ingredientsHTML = ingredients
+          .map((i) => `<li>${i}</li>`)
+          .join("");
         recipeDetails.innerHTML = `
           <h2>${recipe.title}</h2>
           <img src="${recipe.image_url}" class="recipe-image" />
@@ -65,9 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
           fetch("http://localhost:3000/api/bookmark", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userId, recipeId })
+            body: JSON.stringify({ userId, recipeId }),
           })
-            .then(res => res.json())
+            .then((res) => res.json())
             .then(() => {
               bookmarkBtn.textContent = "✅ Bookmarked";
               bookmarkBtn.disabled = true;
@@ -75,7 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       })
       .catch(() => {
-        recipeDetails.innerHTML = "<h2 style='color:red;'>Recipe not found.</h2>";
+        recipeDetails.innerHTML =
+          "<h2 style='color:red;'>Recipe not found.</h2>";
       });
     return; // Don't load all recipes if showing just one
   }
@@ -89,16 +87,19 @@ document.addEventListener("DOMContentLoaded", () => {
     recipeList.innerHTML = "";
     if (recipes.length === 0) {
       recipeList.innerHTML = "<p>No recipes found.</p>";
-      recipeDetails.innerHTML = "<p>Select another recipe or try a new search.</p>";
+      recipeDetails.innerHTML =
+        "<p>Select another recipe or try a new search.</p>";
       return;
     }
-    recipes.forEach(recipe => {
+    recipes.forEach((recipe) => {
       const item = document.createElement("div");
       item.className = "recipe-title";
       item.textContent = recipe.title;
       item.addEventListener("click", () => {
         const ingredients = JSON.parse(recipe.ingredients || "[]");
-        const ingredientsHTML = ingredients.map(i => `<li>${i}</li>`).join("");
+        const ingredientsHTML = ingredients
+          .map((i) => `<li>${i}</li>`)
+          .join("");
         recipeDetails.innerHTML = `
           <h2>${recipe.title}</h2>
           <img src="${recipe.image_url}" class="recipe-image" />
@@ -115,9 +116,9 @@ document.addEventListener("DOMContentLoaded", () => {
           fetch("http://localhost:3000/api/bookmark", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userId, recipeId: recipe.id })
+            body: JSON.stringify({ userId, recipeId: recipe.id }),
           })
-            .then(res => res.json())
+            .then((res) => res.json())
             .then(() => {
               bookmarkBtn.textContent = "✅ Bookmarked";
               bookmarkBtn.disabled = true;
@@ -133,12 +134,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let filtered = [...allRecipes];
     if (currentCategory !== "All") {
       filtered = filtered.filter(
-        r => r.category && r.category.toLowerCase() === currentCategory.toLowerCase()
+        (r) =>
+          r.category &&
+          r.category.toLowerCase() === currentCategory.toLowerCase()
       );
     }
     if (query) {
       filtered = filtered.filter(
-        r =>
+        (r) =>
           r.title.toLowerCase().includes(query) ||
           r.description.toLowerCase().includes(query) ||
           (Array.isArray(r.ingredients)
@@ -151,20 +154,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fetch all recipes
   fetch("http://localhost:3000/api/recipes")
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       allRecipes = data;
       renderRecipes(allRecipes);
     });
 
   // Filter buttons
   if (filterButtons) {
-    filterButtons.addEventListener("click", e => {
+    filterButtons.addEventListener("click", (e) => {
       if (e.target.tagName === "BUTTON") {
         currentCategory = e.target.dataset.category;
-        document.querySelectorAll("#filter-buttons button").forEach(btn =>
-          btn.classList.remove("active")
-        );
+        document
+          .querySelectorAll("#filter-buttons button")
+          .forEach((btn) => btn.classList.remove("active"));
         e.target.classList.add("active");
         filterRecipes();
       }
@@ -232,7 +235,7 @@ if (searchInput && suggestionList) {
 // =====================
 // Star Rating (for cards)
 // =====================
-document.querySelectorAll(".rating").forEach(ratingEl => {
+document.querySelectorAll(".rating").forEach((ratingEl) => {
   let currentRating = parseInt(ratingEl.dataset.rating) || 0;
   // Create 5 stars
   for (let i = 1; i <= 5; i++) {

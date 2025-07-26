@@ -65,6 +65,22 @@ db.run(`
   )
 `);
 
+db.run(`
+  CREATE TABLE IF NOT EXISTS user_profiles (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    name TEXT,
+    email TEXT,
+    bio TEXT,
+    cooking_level TEXT,
+    favorite_cuisine TEXT,
+    avatar TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+  )
+`);
+
 // ✅ Test Route
 app.get('/', (req, res) => {
   res.send('✅ TasteBuddy Backend is working!');

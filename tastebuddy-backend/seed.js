@@ -439,7 +439,7 @@ Once done, sprinkle a bit of chaat masala or lemon juice on top and serve hot wi
   title: "Moong Daal – Yellow Lentil Soup",
   description: "Moong Daal is a light, protein-rich lentil dish that's quick to cook and easy to digest. It's perfect for everyday meals and often paired with boiled rice or chapati. Tempered with garlic and cumin, it's comforting and nourishing.",
   category: "Vegetarian",
-  image: "http://localhost:3000/images/Moong daal.png",
+  image: "http://localhost:3000/images/Moong Daal – Yellow Lentil Soup.png",
   ingredients: [
     "1 cup moong daal (yellow lentils)",
     "2.5 cups water",

@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const ingredients = Array.isArray(recipe.ingredients)
       ? recipe.ingredients
-      : recipe.ingredients.split(',');
+      : recipe.ingredients.match(/(?:"[^"]*"|[^,])+/g).map(i => i.trim());
 
     const imageURL = recipe.image.startsWith("http")
       ? recipe.image
@@ -176,9 +176,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       <img src="${imageURL}" class="recipe-image" alt="${recipe.title}" />
       <p>${recipe.description || ''}</p>
       <h3>Ingredients</h3>
-      <ul>
-        ${ingredients.map(i => `<li>${i.trim()}</li>`).join('')}
-      </ul>
+      <div class="ingredients-list">
+        ${ingredients.map(i => {
+          let cleaned = i.trim();
+          if (cleaned.startsWith('"') && cleaned.endsWith('"')) {
+            cleaned = cleaned.slice(1, -1);
+          }
+          return `<span class=\"ingredient-pill\">${cleaned}</span>`;
+        }).join('')}
+      </div>
       <h3>Instructions</h3>
       <ol class="instruction-list">
         ${recipe.instructions

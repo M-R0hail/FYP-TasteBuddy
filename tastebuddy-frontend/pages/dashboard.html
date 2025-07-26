@@ -6,6 +6,8 @@
   <title>User Dashboard - TasteBuddy</title>
   <!-- Google Fonts: Poppins for all text -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/dashboard.css" />
 </head>
 <body>
@@ -18,9 +20,6 @@
         <img src="../Assests/logo.png" alt="Taste Buddy Logo">
       </a>
     </div>
-    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
-      <i class="fas fa-bars"></i>
-    </button>
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search recipes or ingredients" autocomplete="off" />
       <ul class="suggestions" id="suggestionList"></ul>
@@ -56,38 +55,152 @@
     <header>
       <h1>Welcome, <span id="username">User</span> 👋</h1>
     </header>
-    <!-- Avatar Selection -->
-    <div class="avatar-card">
-      <h2>🌟 Select Your Cooking Avatar</h2>
-      <div class="avatar-preview" id="avatarPreview">🧑‍🍳</div>
-      <label for="avatarSelect">Choose Your Avatar:</label>
-      <div class="circle">
-        <select id="avatarSelect">
-          <!-- Human-style avatars -->
-          <option value="🧑">🧑 Chef</option>
-          <option value="👩‍🍳">👩‍🍳 Female Chef</option>
-          <option value="👨‍🍳">👨‍🍳 Male Chef</option>
-          <option value="🧑">🧑 Student</option>
-          <option value="👩‍🎓">👩‍🎓 Girl Student</option>
-          <option value="👨‍🎓">👨‍🎓 Boy Student</option>
-          <option value="👩‍🌾">👩‍🌾 Female Farmer</option>
-          <option value="👨‍🌾">👨‍🌾 Male Farmer</option>
-          <option value="🧑">🧑 Person</option>
-          <option value="👩">👩 Woman</option>
-          <option value="👨">👨 Man</option>
-          <!-- Food-themed avatars -->
-          <option value="🧁">🧁 Cupcake</option>
-          <option value="🍰">🍰 Cake</option>
-          <option value="🍜">🍜 Ramen</option>
-          <option value="🍗">🍗 Grill</option>
-          <option value="🍕">🍕 Pizza</option>
-          <option value="🍔">🍔 Burger</option>
-          <option value="🥗">🥗 Salad</option>
-          <option value="🍳">🍳 Pan</option>
-        </select>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+      <div class="profile-card">
+        <div class="profile-header">
+          <div class="profile-avatar">
+            <div class="avatar-preview" id="avatarPreview">🧑‍🍳</div>
+            <button class="avatar-edit-btn" id="avatarEditBtn" aria-label="Edit avatar">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+          <div class="profile-info">
+            <h2 id="profileName">User Name</h2>
+            <p id="profileEmail">user@example.com</p>
+            <p id="profileJoinDate">Member since: <span id="joinDate">January 2024</span></p>
+            <div class="profile-details" id="profileDetails" style="display: none;">
+              <p id="profileBio" class="profile-bio"></p>
+              <div class="profile-stats">
+                <span class="stat-item">
+                  <i class="fas fa-utensils"></i>
+                  <span id="profileCookingLevel">Beginner</span>
+                </span>
+                <span class="stat-item">
+                  <i class="fas fa-heart"></i>
+                  <span id="profileFavoriteCuisine">Not set</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="profile-actions">
+            <button class="btn edit-profile-btn" id="editProfileBtn">
+              <i class="fas fa-user-edit"></i> Edit Profile
+            </button>
+            <button class="btn logout-btn" id="logoutBtn">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div id="emojiAvatar" class="emoji-avatar"></div>
+
+      <!-- Avatar Selection Modal -->
+      <div class="modal" id="avatarModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Choose Your Cooking Avatar</h3>
+            <button class="modal-close" id="closeAvatarModal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <!-- Upload Custom Avatar Section -->
+            <div class="avatar-upload-section">
+              <h4>📸 Upload Your Own Photo</h4>
+              <div class="upload-area" id="uploadArea">
+                <div class="upload-content">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  <p>Click to upload or drag & drop</p>
+                  <p class="upload-hint">Supports: JPG, PNG, GIF (Max 5MB)</p>
+                </div>
+                <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
+              </div>
+              <div class="upload-preview" id="uploadPreview" style="display: none;">
+                <img id="previewImage" src="" alt="Preview">
+                <div class="preview-actions">
+                  <button class="btn use-upload-btn" id="useUploadBtn">Use This Photo</button>
+                  <button class="btn remove-upload-btn" id="removeUploadBtn">Remove</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="avatar-divider">
+              <span>OR</span>
+            </div>
+
+            <!-- Emoji Avatars Section -->
+            <div class="emoji-avatars-section">
+              <h4>😊 Choose an Emoji Avatar</h4>
+              <div class="avatar-grid">
+                <!-- Human-style avatars -->
+                <div class="avatar-option" data-avatar="🧑">🧑 Chef</div>
+                <div class="avatar-option" data-avatar="👩‍🍳">👩‍🍳 Female Chef</div>
+                <div class="avatar-option" data-avatar="👨‍🍳">👨‍🍳 Male Chef</div>
+                <div class="avatar-option" data-avatar="🧑">🧑 Student</div>
+                <div class="avatar-option" data-avatar="👩‍🎓">👩‍🎓 Girl Student</div>
+                <div class="avatar-option" data-avatar="👨‍🎓">👨‍🎓 Boy Student</div>
+                <div class="avatar-option" data-avatar="👩‍🌾">👩‍🌾 Female Farmer</div>
+                <div class="avatar-option" data-avatar="👨‍🌾">👨‍🌾 Male Farmer</div>
+                <div class="avatar-option" data-avatar="🧑">🧑 Person</div>
+                <div class="avatar-option" data-avatar="👩">👩 Woman</div>
+                <div class="avatar-option" data-avatar="👨">👨 Man</div>
+                <!-- Food-themed avatars -->
+                <div class="avatar-option" data-avatar="🧁">🧁 Cupcake</div>
+                <div class="avatar-option" data-avatar="🍰">🍰 Cake</div>
+                <div class="avatar-option" data-avatar="🍜">🍜 Ramen</div>
+                <div class="avatar-option" data-avatar="🍗">🍗 Grill</div>
+                <div class="avatar-option" data-avatar="🍕">🍕 Pizza</div>
+                <div class="avatar-option" data-avatar="🍔">🍔 Burger</div>
+                <div class="avatar-option" data-avatar="🥗">🥗 Salad</div>
+                <div class="avatar-option" data-avatar="🍳">🍳 Pan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit Profile Modal -->
+      <div class="modal" id="profileModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Edit Profile</h3>
+            <button class="modal-close" id="closeProfileModal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form id="profileForm" class="profile-form">
+              <div class="form-group">
+                <label for="editName">Full Name</label>
+                <input type="text" id="editName" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="editEmail">Email</label>
+                <input type="email" id="editEmail" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="editBio">Bio (Optional)</label>
+                <textarea id="editBio" name="bio" rows="3" placeholder="Tell us about your cooking journey..."></textarea>
+              </div>
+              <div class="form-group">
+                <label for="editCookingLevel">Cooking Experience</label>
+                <select id="editCookingLevel" name="cookingLevel">
+                  <option value="beginner">Beginner</option>
+                  <option value="intermediate">Intermediate</option>
+                  <option value="advanced">Advanced</option>
+                  <option value="expert">Expert</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="editFavoriteCuisine">Favorite Cuisine</label>
+                <input type="text" id="editFavoriteCuisine" name="favoriteCuisine" placeholder="e.g., Italian, Pakistani, Mexican">
+              </div>
+              <div class="form-actions">
+                <button type="button" class="btn cancel-btn" id="cancelProfileEdit">Cancel</button>
+                <button type="submit" class="btn save-btn">Save Changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Bookmarked Recipes Section -->
     <section class="section">
