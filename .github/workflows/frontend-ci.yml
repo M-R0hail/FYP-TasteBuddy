@@ -1,11 +1,11 @@
 name: Frontend CI/CD to Docker Hub
 
-# This ensures it ONLY runs when you change something in the frontend folder
 on:
   push:
     branches: [ "main" ]
     paths:
       - 'tastebuddy-frontend/**'
+  workflow_dispatch: # <-- This adds a manual "Run workflow" button!
 
 jobs:
   build-and-push:
@@ -15,25 +15,20 @@ jobs:
         working-directory: ./tastebuddy-frontend
 
     steps:
-      # 1. Download your repository code
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Run a Linter (Like a teacher checking your code for typos/syntax errors)
       - name: Run Linter
         run: |
           echo "Running linter checks on frontend..."
-          # If you use npm/eslint later, you can replace this with: npm run lint
           npx eslint . || echo "No eslint config found, skipping strict lint, but check passed!"
 
-      # 3. Log in to Docker Hub using the secrets you saved in Step 2
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # 4. Build and Push your Docker image to Docker Hub
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
