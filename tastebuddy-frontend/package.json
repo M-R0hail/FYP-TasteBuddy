@@ -1,0 +1,19 @@
+{
+  "name": "tastebuddy-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "lint": "npm run lint:js && npm run lint:html",
+  "lint:js": "eslint .",
+  "lint:html": "htmlhint \"**/*.html\""
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "eslint": "^10.14.0",
+    "htmlhint": "^1.9.2"
+  }
+}
